@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Header from "./Header";
 import Footer from "./Footer";
+import Body from "./Body";
 import Routes from "./Routes";
 
 class App extends Component {
@@ -8,7 +9,9 @@ class App extends Component {
     return (
       <div className="App">
         <Header></Header>
-        <Routes></Routes>
+        <Body>
+          <Routes></Routes>
+        </Body>
         <Footer></Footer>
       </div>
     )
