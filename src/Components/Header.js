@@ -1,30 +1,38 @@
 import React, { Component } from 'react';
+import { Link } from "react-router-dom";
 import styled from 'styled-components';
 import blogImage from "../images/BlogLogo.png"
 
-const HeaderBox = styled.div`
-  display:flex;
-  flex-direction:row;
-  margin-bottom:10px;
+const HeaderSpace = styled.header`
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;
 
-const HeaderTextArea = styled.div`
+const LogoSpace = styled.img.attrs({
+  required:true
+})`
+  width:210px;
+  margin-left:5px;
+`;
+
+const MenuSpace = styled.div`
   display:flex;
-  flex-direction:column;
-  justify-content:center;
+  align-items:center;
 `;
 
 class Header extends Component {
+
     render(){
       return (
-        <header>
-          <HeaderBox>
-            <img src={blogImage} />
-            <HeaderTextArea>
-              <h1> Engineering Blog </h1>
-            </HeaderTextArea>
-          </HeaderBox>
-        </header>
+        <HeaderSpace>
+          <LogoSpace src={blogImage}></LogoSpace>
+          <MenuSpace>
+            <Link to ="/login">login</Link>
+          </MenuSpace>
+        </HeaderSpace>
       );
     }
   }
