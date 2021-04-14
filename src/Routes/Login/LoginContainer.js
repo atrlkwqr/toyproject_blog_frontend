@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import LoginPresenter from "./LoginPresenter";
 
-
 class LoginContainer extends Component {
     state = {
         loading: true
@@ -23,7 +22,6 @@ class LoginContainer extends Component {
     render() {
         <LoginPresenter { ...this.state}></LoginPresenter>;
     }
-
 }
 
 export default LoginContainer;

@@ -3,11 +3,11 @@ import React, { Component } from 'react';
 class Header extends Component {
     render(){
       return (
-        <header>
+        <footer>
           <h1>
             FOOTER
           </h1>
-        </header>
+        </footer>
       );
     }
   }
