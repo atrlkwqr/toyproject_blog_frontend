@@ -49,15 +49,13 @@ class LoginPresenter extends Component {
 
     _renderLogin() {
         return (
-            //<Input placeholder="email" {...email} />
-            //<Input placeholder="password" {...password} />
             <React.Fragment>
             <LoginBox>
                 <LoginTitleArea>{"Log in to blog"}</LoginTitleArea>
                 <MainArea>
                     <Input placeholder="email"></Input>
                     <Input placeholder="password"></Input>
-                    <Button></Button>
+                    <Button value="login"></Button>
                 </MainArea>
                 <LoginFooterArea>
                     <Link to ="/signup">Create Account</Link>

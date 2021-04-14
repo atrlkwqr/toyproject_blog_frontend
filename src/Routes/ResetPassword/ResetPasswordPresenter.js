@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class ResetPassword extends Component {
+class ResetPasswordPresenter extends Component {
     render(){
       return (
         <h1>ResetPassword</h1>
@@ -8,4 +8,4 @@ class ResetPassword extends Component {
     }
   }
 
-export default ResetPassword;
+export default ResetPasswordPresenter;
