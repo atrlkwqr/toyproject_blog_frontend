@@ -1,15 +1,24 @@
 import React, { Component } from 'react';
+import styled from "styled-components";
 
-class Header extends Component {
+const FooterBox = styled.div`
+display:flex;
+flex-direction:row;
+align-items:center;
+justify-content:center;
+height:100px;
+`;
+
+class Footer extends Component {
     render(){
       return (
         <footer>
-          <h1>
-            FOOTER
-          </h1>
+          <FooterBox>
+            OpenSource Blog. Powered by GitHub Pages.
+          </FooterBox>
         </footer>
       );
     }
   }
 
-export default Header;
+export default Footer;

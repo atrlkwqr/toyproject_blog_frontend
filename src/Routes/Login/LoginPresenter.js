@@ -10,7 +10,7 @@ const LoginBox = styled.div`
     height: 500px;
     display:grid;
     grid-auto-flow: row;
-    grid-template-rows: 1.5fr 2.5fr 0.7fr 0.7fr 0.7fr;
+    grid-template-rows: 1.8fr 2.7fr 0.5fr 0.8fr;
     align-items: center;
     margin-left: 100px;
     margin-right: 100px;
