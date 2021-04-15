@@ -28,7 +28,9 @@ class Header extends Component {
     render(){
       return (
         <HeaderSpace>
-          <LogoSpace src={blogImage}></LogoSpace>
+          <a href="/">
+            <LogoSpace src={blogImage}></LogoSpace>
+          </a>
           <MenuSpace>
             <Link to ="/login">login</Link>
           </MenuSpace>
