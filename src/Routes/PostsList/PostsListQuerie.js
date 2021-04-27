@@ -1,12 +1,13 @@
-import { gql } from "@apollo/client";
+import {gql} from "@apollo/client";
 
-const getPostList = gql`
-  query{
-    getAccount(userId:"3"){
-      ok
-      token
-    }
-  }
+export const GET_POST_LIST = gql `
+  query getPost(
+    $postId: String
+    $id: String
+  ){
+  getPost(
+    postId: $postId
+    id: $id
+  )
+}
 `;
-
-export default getPostList;

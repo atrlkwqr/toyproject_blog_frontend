@@ -1,30 +1,27 @@
 import React from "react";
 import PostsListPresenter from "./PostsListPresenter";
-import { useQuery } from "@apollo/client";
-import getPostsListQuerie from "./PostsListQuerie";
+import {useQuery} from "@apollo/client";
+import { GET_POST_LIST } from "./PostsListQuerie";
 
-function PostsListContainer() {
+const PostsListContainer = () => {
 
-  let userId, token;
+  let postId = 'a';
+  let id = 'b';
+  //let id = 'c';
 
-  const { loading, error, data } = useQuery(getPostsListQuerie);
+  const {data, loading} = useQuery(GET_POST_LIST, {variables: {postId: postId, id: id}});
 
-  if (loading) return <p className="loading">Loading...</p>
-  else {
-
+  if(!loading){ 
     const {
-      getAccount:getPostListResponse
+      getpostList:postList
     } = data;
 
-    userId = getPostListResponse.userId;
-    token = getPostListResponse.token;
+    console.log(data)
+    return <PostsListPresenter loading={loading} postList={postList} />
+  } 
 
-    if (error) return <p className="error">Error :(</p>
-    else{
-      return <PostsListPresenter userId={userId} token={token}></PostsListPresenter>
-    }
+  return <PostsListPresenter loading={loading}/>
 
-  }
 }
 
 export default PostsListContainer;

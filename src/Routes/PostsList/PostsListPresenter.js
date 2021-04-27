@@ -39,30 +39,26 @@ const TempPostMargin = styled.div`
     margin-top:50px;
 `;
 
-class PostsListPresenter extends Component {
-    render() {
-        const { userId, token } = this.props;
-        return (
-            <React.Fragment>
-                <TotalBox>
-                    <TotalPostBox>
-                        <TempPostBox>
-                            <TempPostText>{token}</TempPostText>
-                            <img src={BlogLogo} />
-                        </TempPostBox>
-                        <TempPostMargin />
-                        <TempPostBox>
-                            <TempPostText>GraphQL</TempPostText>
-                            <img src={BlogLogo} />
-                        </TempPostBox>
-                    </TotalPostBox>
-                        <CategoriesBox>
-                        categories
-                    </CategoriesBox>
-                </TotalBox>
-            </React.Fragment>
-        )
-    }
-}
 
-export default PostsListPresenter;
+export default () => {
+    return (
+        <React.Fragment>
+            <TotalBox>
+                <TotalPostBox>
+                    <TempPostBox>
+                        <TempPostText></TempPostText>
+                        <img src={BlogLogo} />
+                    </TempPostBox>
+                    <TempPostMargin />
+                    <TempPostBox>
+                        <TempPostText>GraphQL</TempPostText>
+                        <img src={BlogLogo} />
+                    </TempPostBox>
+                </TotalPostBox>
+                    <CategoriesBox>
+                    categories
+                </CategoriesBox>
+            </TotalBox>
+        </React.Fragment>
+    )
+}
