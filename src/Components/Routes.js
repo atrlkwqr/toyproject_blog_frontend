@@ -1,11 +1,11 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-import SignUp from "../Routes/SignUp/SignUpPresenter";
-import Login from "../Routes/Login/LoginPresenter";
-import ResetPassword from "../Routes/ResetPassword/ResetPasswordPresenter";
-import PostsList from "../Routes/PostsList/PostsListPresenter";
-import PostWrite from "../Routes/PostWrite/PostWritePresenter";
+import SignUp from "../Routes/SignUp";
+import Login from "../Routes/Login";
+import ResetPassword from "../Routes/ResetPassword";
+import PostsList from "../Routes/PostsList";
+import PostWrite from "../Routes/PostWrite";
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
 

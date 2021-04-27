@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Input from "../../Components/Input";
-import Page404 from "../../Components/Page404";
 import Button from "../../Components/Button";
 
 const LoginBox = styled.div`
@@ -37,17 +36,8 @@ const LoginFooterArea = styled.div`
 `;
 
 class LoginPresenter extends Component {
-    _renderLoading() {
-        return (
-            <div>Loading...</div>
-        )
-    }
 
-    _renderError() {
-        return <Page404></Page404>
-    }
-
-    _renderLogin() {
+    render(){
         return (
             <React.Fragment>
             <LoginBox>
@@ -66,17 +56,6 @@ class LoginPresenter extends Component {
             </LoginBox>
             </React.Fragment>
         )
-    }
-
-    render(){
-    //   if(this.props.loading) {
-    //       return this._renderLoading();
-    //   } else if(this.props.posts) {
-    //       return this._renderLogin();
-    //   } else {
-    //       return this._renderError();
-    //   }
-       return this._renderLogin();
     }
   }
 

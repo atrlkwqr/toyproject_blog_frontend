@@ -9,12 +9,11 @@ const Container = styled.button.attrs({
   height: 25px;
 `;
 
-class Button extends Component {
-    render(){
-      return (
-          <Container>{this.props.value}</Container>
-      );
-    }
-  }
+const Button = ({
+  value,
+  onClick
+}) => {
+  return <Container onClick={onClick}>{value}</Container>
+}
 
 export default Button;

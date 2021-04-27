@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import styled from "styled-components";
-import Page404 from "../../Components/Page404"
 import BlogLogo from "../../images/BlogLogo.png"
 
 const TotalBox = styled.div`
@@ -41,25 +40,14 @@ const TempPostMargin = styled.div`
 `;
 
 class PostsListPresenter extends Component {
-    _renderLoading() {
-        return (
-            <div>Loading...</div>
-        )
-    }
-    
-    _renderError() {
-        return (
-            <Page404></Page404>
-        )
-    }
-
-    _renderPosts() {
+    render() {
+        const { userId, token } = this.props;
         return (
             <React.Fragment>
                 <TotalBox>
                     <TotalPostBox>
                         <TempPostBox>
-                            <TempPostText>React</TempPostText>
+                            <TempPostText>{token}</TempPostText>
                             <img src={BlogLogo} />
                         </TempPostBox>
                         <TempPostMargin />
@@ -68,25 +56,13 @@ class PostsListPresenter extends Component {
                             <img src={BlogLogo} />
                         </TempPostBox>
                     </TotalPostBox>
-                    <CategoriesBox>
+                        <CategoriesBox>
                         categories
                     </CategoriesBox>
                 </TotalBox>
             </React.Fragment>
         )
     }
-
-    render(){
-    //   if(this.props.loading) {
-    //       return this._renderLoading();
-    //   } else if(this.props.posts) {
-    //       return this._renderPosts();
-    //   } else {
-    //       return this._renderError();
-    //   }
-        return this._renderPosts();
-    }
-
 }
 
 export default PostsListPresenter;

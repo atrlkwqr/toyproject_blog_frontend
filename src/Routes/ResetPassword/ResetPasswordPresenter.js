@@ -1,10 +1,9 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import styled from "styled-components";
-import Page404 from "../../Components/Page404";
 import Button from "../../Components/Button";
 import Input from '../../Components/Input';
 
-const ResetPasswordBox = styled.div`
+const ResetPasswordBox = styled.div `
     background-color: rgba(255, 255, 128, .5);
     height: 300px;
     display:grid;
@@ -15,13 +14,13 @@ const ResetPasswordBox = styled.div`
     margin-right: 100px;
 `;
 
-const ResetPasswordTitleArea = styled.div`
+const ResetPasswordTitleArea = styled.div `
     display:flex;
     align-items:center;
     justify-content:center;
 `;
 
-const MainArea = styled.div`
+const MainArea = styled.div `
     display:flex;
     flex-direction:column;
     align-items:center;
@@ -29,38 +28,18 @@ const MainArea = styled.div`
 `;
 
 class ResetPasswordPresenter extends Component {
-  _renderLoading() {
+
+    render() {
         return (
-            <div>Loading...</div>
+            <ResetPasswordBox>
+                <ResetPasswordTitleArea>{"ResetPassword"}</ResetPasswordTitleArea>
+                <MainArea>
+                    <Input placeholder="email"></Input>
+                    <Button value="send"></Button>
+                </MainArea>
+            </ResetPasswordBox>
         )
     }
-
-    _renderError() {
-        return <Page404></Page404>
-    }
-
-    _renderResetPassword() {
-        return (
-          <ResetPasswordBox>
-            <ResetPasswordTitleArea>{"ResetPassword"}</ResetPasswordTitleArea>
-            <MainArea>
-              <Input placeholder="email"></Input>
-              <Button value="send"></Button>
-            </MainArea>
-          </ResetPasswordBox>
-        )
-    }
-
-    render(){
-    //   if(this.props.loading) {
-    //       return this._renderLoading();
-    //   } else if(this.props.posts) {
-    //       return this._renderResetPassword();
-    //   } else {
-    //       return this._renderError();
-    //   }
-       return this._renderResetPassword();
-    }
-  }
+}
 
 export default ResetPasswordPresenter;
