@@ -35,28 +35,30 @@ const LoginFooterArea = styled.div`
     padding-right: 50px;
 `;
 
-class LoginPresenter extends Component {
-
-    render(){
-        return (
-            <React.Fragment>
-            <LoginBox>
-                <LoginTitleArea>{"Log in to blog"}</LoginTitleArea>
-                <MainArea>
-                    <Input placeholder="email"></Input>
-                    <Input placeholder="password"></Input>
-                    <Button value="login"></Button>
-                </MainArea>
-                <LoginFooterArea>
-                    <Link to ="/signup">Create Account</Link>
-                </LoginFooterArea>
-                <LoginFooterArea>
-                    <Link to ="/reset_password">Forgot Password?</Link>
-                </LoginFooterArea>
-            </LoginBox>
-            </React.Fragment>
-        )
-    }
-  }
+const LoginPresenter = ({
+    email,
+    password,
+    clickFunc
+}
+) => {
+    return (
+        <React.Fragment>
+        <LoginBox>
+            <LoginTitleArea>{"Log in to blog"}</LoginTitleArea>
+            <MainArea>
+                <Input placeholder="email" {...email}></Input>
+                <Input placeholder="password" {...password}></Input>
+                <Button value="login" onClick={clickFunc}></Button>
+            </MainArea>
+            <LoginFooterArea>
+                <Link to ="/signup">Create Account</Link>
+            </LoginFooterArea>
+            <LoginFooterArea>
+                <Link to ="/reset_password">Forgot Password?</Link>
+            </LoginFooterArea>
+        </LoginBox>
+        </React.Fragment>
+    )
+}
 
 export default LoginPresenter;
