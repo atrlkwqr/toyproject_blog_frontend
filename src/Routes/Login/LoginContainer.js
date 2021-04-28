@@ -30,6 +30,7 @@ const LoginContainer = () => {
             if(getAccountResponse.ok===true){
                 toast("Login Success!")
                 console.log(getAccountResponse.token)
+                localStorage.setItem("token",getAccountResponse.token);
                 //setTimeout(function(){ window.location.href="/" }, 4000);
             } else {
                 setSubmitting(false);
