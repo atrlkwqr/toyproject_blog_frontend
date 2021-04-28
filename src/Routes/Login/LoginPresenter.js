@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Input from "../../Components/Input";
 import Button from "../../Components/Button";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const LoginBox = styled.div`
     background-color: rgba(255, 255, 128, .5);
@@ -42,6 +44,8 @@ const LoginPresenter = ({
 }
 ) => {
     return (
+        <>
+        <ToastContainer />
         <React.Fragment>
         <LoginBox>
             <LoginTitleArea>{"Log in to blog"}</LoginTitleArea>
@@ -58,6 +62,7 @@ const LoginPresenter = ({
             </LoginFooterArea>
         </LoginBox>
         </React.Fragment>
+        </>
     )
 }
 

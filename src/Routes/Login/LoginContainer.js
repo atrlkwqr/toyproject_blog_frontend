@@ -27,8 +27,9 @@ const LoginContainer = () => {
 
         if(!loading){
             console.log(getAccountResponse);
-            if(getAccountResponse===true){
+            if(getAccountResponse.ok===true){
                 toast("Login Success!")
+                console.log(getAccountResponse.token)
                 //setTimeout(function(){ window.location.href="/" }, 4000);
             } else {
                 setSubmitting(false);

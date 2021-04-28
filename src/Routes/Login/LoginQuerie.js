@@ -8,6 +8,9 @@ mutation getAccount(
   getAccount(
     email:$email
     password:$password
-  )
+  ){
+    ok,
+    token
+  }
 }
 `;
