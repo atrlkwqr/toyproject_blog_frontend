@@ -1,6 +1,6 @@
-import React, {MouseEvent, useState} from "react";
+import React, {useState} from "react";
 import LoginPresenter from "./LoginPresenter";
-import { useInput } from "../../utils";
+import { useInput, LOCAL_LOG_IN } from "../../utils";
 import {useMutation} from "@apollo/react-hooks";
 import { LOGIN } from './LoginQuerie';
 import { toast } from 'react-toastify';
@@ -9,6 +9,7 @@ const LoginContainer = () => {
     const email = useInput("");
     const password = useInput("");
     const [submitting, setSubmitting] = useState(false);
+    const [localLogInMutation] = useMutation(LOCAL_LOG_IN);
 
     const [getAccountMutation, {loading}] = useMutation(LOGIN);
 
@@ -27,11 +28,12 @@ const LoginContainer = () => {
 
         if(!loading){
             console.log(getAccountResponse);
-            if(getAccountResponse.ok===true){
+            let ok = getAccountResponse.ok
+            let token = getAccountResponse.token;
+            if(ok===true || token!==null){
                 toast("Login Success!")
-                console.log(getAccountResponse.token)
-                localStorage.setItem("token",getAccountResponse.token);
-                //setTimeout(function(){ window.location.href="/" }, 4000);
+                await localLogInMutation({variables:{token}});
+                setTimeout(function(){ window.location.href="/" }, 3000);
             } else {
                 setSubmitting(false);
                 toast("Error!")

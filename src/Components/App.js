@@ -1,29 +1,25 @@
-import React, { Component } from 'react';
-import { BrowserRouter as Router } from "react-router-dom";
-import { ApolloProvider } from "@apollo/client";
-import { ApolloClient, InMemoryCache } from "@apollo/client";
+import React from 'react';
+import {BrowserRouter as Router} from "react-router-dom";
+import { useQuery} from "@apollo/client";
 import Body from "./Body";
 import Routes from "./Routes";
+import {LOCAL_LOGGED_IN_QUERY} from "../sharedQueries";
 
-const client = new ApolloClient({
-  uri: 'http://localhost:4000',
-  cache: new InMemoryCache()
-});
+const App = () => {
 
-class App extends Component {
-  render(){
+    const {data: {
+            isLoggedIn
+        }} = useQuery(LOCAL_LOGGED_IN_QUERY);
+
     return (
-      <div className="App">
-        <ApolloProvider client={client}>
-          <Router>
-            <Body>
-              <Routes />
-            </Body>
-          </Router>
-        </ApolloProvider>
-      </div>
+        <div className="App">
+            <Router>
+                <Body>
+                    <Routes isLoggedIn={isLoggedIn}/>
+                </Body>
+            </Router>
+        </div>
     )
-  }
 }
 
 export default App;
