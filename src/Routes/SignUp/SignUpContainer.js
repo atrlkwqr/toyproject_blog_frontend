@@ -18,7 +18,7 @@ const SignUpContainer = () => {
         setSubmitting(true);
         e.preventDefault();
 
-        if(password !== password_confirmation){
+        if(password.value !== password_confirmation.value){
             toast("Does not match password and password_confirmation")
             return false;
         }
@@ -36,7 +36,7 @@ const SignUpContainer = () => {
         if(!loading){
             if(registerAccountResponse===true){
                 toast("Register Success!")
-                setTimeout(function(){ window.location.href="/" }, 4000);
+                setTimeout(function(){ window.location.href="/login" }, 4000);
             } else {
                 setSubmitting(false);
                 toast("Error!")
