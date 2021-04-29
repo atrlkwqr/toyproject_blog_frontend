@@ -1,12 +1,10 @@
 import {gql} from "@apollo/client";
 
 export const GET_POST_LIST = gql `
-  query getPost(
-    $postId: String
+  query getPostList(
     $id: String
   ){
-  getPost(
-    postId: $postId
+  getPostList(
     id: $id
   )
 }

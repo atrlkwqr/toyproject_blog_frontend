@@ -5,11 +5,10 @@ import { GET_POST_LIST } from "./PostsListQuerie";
 
 const PostsListContainer = () => {
 
-  let postId = 'a';
   let id = 'b';
   //let id = 'c';
 
-  const {data, loading} = useQuery(GET_POST_LIST, {variables: {postId: postId, id: id}});
+  const {data, loading} = useQuery(GET_POST_LIST, {variables: {id: id}});
 
   if(!loading){ 
     const {
