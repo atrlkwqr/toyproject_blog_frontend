@@ -5,21 +5,28 @@ import { GET_POST_LIST } from "./PostsListQuerie";
 
 const PostsListContainer = () => {
 
-  let id = 'b';
-  //let id = 'c';
+  let id = 'cko2ln2vd0000il6p1rl0rkwy';
 
   const {data, loading} = useQuery(GET_POST_LIST, {variables: {id: id}});
 
+  let posts
+
   if(!loading){ 
     const {
-      getpostList:postList
+      getPostList:getPostListResponse
     } = data;
 
-    console.log(data)
-    return <PostsListPresenter loading={loading} postList={postList} />
+    //console.log(getPostListResponse)
+
+    //console.log(getPostListResponse.posts[0].postId)
+    if(getPostListResponse!==null){
+      posts = getPostListResponse.posts;
+  
+      console.log(posts)
+    }
   } 
 
-  return <PostsListPresenter loading={loading}/>
+  return <PostsListPresenter loading={loading} posts={posts}/>
 
 }
 

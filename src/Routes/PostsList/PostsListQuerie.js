@@ -6,6 +6,11 @@ export const GET_POST_LIST = gql `
   ){
   getPostList(
     id: $id
-  )
+  ){
+    ok,
+    posts{
+      postId
+    }
+  }
 }
 `;

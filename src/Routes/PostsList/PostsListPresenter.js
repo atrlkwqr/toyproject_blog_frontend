@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styled from "styled-components";
 import BlogLogo from "../../images/BlogLogo.png"
+import PostsListContainer from './PostsListContainer';
 
 const TotalBox = styled.div`
     display:flex;
@@ -36,29 +37,39 @@ const TempPostText = styled.div`
 `;
 
 const TempPostMargin = styled.div`
-    margin-top:50px;
+    margin-bottom:50px;
 `;
 
 
-export default () => {
+export default ({
+    posts,
+    loading
+}
+) => {
     return (
         <React.Fragment>
+        {loading?
+             <h1>loading</h1>:
             <TotalBox>
                 <TotalPostBox>
-                    <TempPostBox>
-                        <TempPostText></TempPostText>
-                        <img src={BlogLogo} />
-                    </TempPostBox>
-                    <TempPostMargin />
-                    <TempPostBox>
-                        <TempPostText>GraphQL</TempPostText>
-                        <img src={BlogLogo} />
-                    </TempPostBox>
+                    {posts.map((dictObj, index) => {
+                        console.log(dictObj)
+                        return (
+                            <TempPostMargin>
+                            <TempPostBox key={index}>
+                                <TempPostText>
+                                    {dictObj.postId}
+                                </TempPostText>
+                            </TempPostBox>
+                            </ TempPostMargin>
+                        )
+                    })}
                 </TotalPostBox>
                     <CategoriesBox>
                     categories
                 </CategoriesBox>
             </TotalBox>
+        }
         </React.Fragment>
     )
 }
