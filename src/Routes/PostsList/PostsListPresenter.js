@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import styled from "styled-components";
-import BlogLogo from "../../images/BlogLogo.png"
-import PostsListContainer from './PostsListContainer';
 
 const TotalBox = styled.div`
     display:flex;
@@ -53,10 +51,9 @@ export default ({
             <TotalBox>
                 <TotalPostBox>
                     {posts.map((dictObj, index) => {
-                        console.log(dictObj)
                         return (
-                            <TempPostMargin>
-                            <TempPostBox key={index}>
+                            <TempPostMargin key={index}>
+                            <TempPostBox>
                                 <TempPostText>
                                     {dictObj.postId}
                                 </TempPostText>

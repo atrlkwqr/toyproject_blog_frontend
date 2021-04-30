@@ -42,7 +42,7 @@ const Header = () => {
       const {
         getUserProfile:getUserProfileResponse
       } = profileData;
-      console.log(getUserProfileResponse);
+      //console.log(getUserProfileResponse);
       if(getUserProfileResponse!==null){
         userId = getUserProfileResponse.userId;
       }
