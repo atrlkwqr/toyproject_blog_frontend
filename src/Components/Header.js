@@ -1,12 +1,15 @@
 import React from 'react';
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 import styled from 'styled-components';
 import blogImage from "../images/BlogLogo.png"
 import {LOCAL_LOGGED_IN_QUERY} from "../sharedQueries"
 import {useQuery} from "@apollo/client";
 import {GET_PROFILE} from "../Routes/Profile/ProfileQuerie"
+import {LOCAL_LOG_OUT} from "../utils";
+import {Mutation} from '@apollo/client/react/components';
+import Button from "../Components/Button";
 
-const HeaderSpace = styled.header`
+const HeaderSpace = styled.header `
   width: 100%;
   height: 100px;
   display: flex;
@@ -14,58 +17,73 @@ const HeaderSpace = styled.header`
   align-items: center;
 `;
 
-const LogoSpace = styled.img.attrs({
-  required:true
-})`
+const LogoSpace = styled
+    .img
+    .attrs({required: true})`
   width:210px;
   margin-left:5px;
 `;
 
-const MenuSpace = styled.div`
+const MenuSpace = styled.div `
   display:flex;
   align-items:center;
 `;
 
+const ProfileBox = styled.div `
+
+`;
+
 const Header = () => {
 
-  const {
-    data: {isLoggedIn}
-  } = useQuery(LOCAL_LOGGED_IN_QUERY);
+    const {data: {
+            isLoggedIn
+        }} = useQuery(LOCAL_LOGGED_IN_QUERY);
 
-  const {data:profileData, loading:profileLoading} = useQuery(GET_PROFILE);
+    const {data: profileData, loading: profileLoading} = useQuery(GET_PROFILE);
 
+    let userId = null;
 
-  let userId = null;
-
-  if(isLoggedIn===true){
-    if(!profileLoading){
-      const {
-        getUserProfile:getUserProfileResponse
-      } = profileData;
-      //console.log(getUserProfileResponse);
-      if(getUserProfileResponse!==null){
-        userId = getUserProfileResponse.userId;
-      }
-    }
-  }
-
-
-
-  return (
-    <HeaderSpace>
-      <a href="/">
-        <LogoSpace src={blogImage}></LogoSpace>
-      </a>
-      <MenuSpace>
-        {isLoggedIn?
-        <h1>{userId}</h1>
-        :
-        <Link to ="/login">login</Link>
+    if (isLoggedIn === true) {
+        if (!profileLoading) {
+            const {getUserProfile: getUserProfileResponse} = profileData;
+            //console.log(getUserProfileResponse);
+            if (getUserProfileResponse !== null) {
+                userId = getUserProfileResponse.userId;
+            }
         }
-      </MenuSpace>
-    </HeaderSpace>
-  );
-}
+    }
 
+    return (
+        <HeaderSpace>
+            <a href="/">
+                <LogoSpace src={blogImage}></LogoSpace>
+            </a>
+            <MenuSpace>
+                {
+                    isLoggedIn
+                        ? <ProfileBox>
+
+                                <h1>{userId}</h1>
+                                <Mutation mutation={LOCAL_LOG_OUT}>
+                                    {
+                                        (logOutMutation, {loading}) => {
+
+                                            return <Button value="logout"
+                                                onClick={() => {
+                                                    window.location.href = "/";
+                                                    logOutMutation();
+                                                }}>
+                                                {"Log out"}
+                                            </Button>
+                                        }
+                                    }
+                                </Mutation>
+                            </ProfileBox>
+                        : <Link to="/login">login</Link>
+                }
+            </MenuSpace>
+        </HeaderSpace>
+    );
+}
 
 export default Header;

@@ -19,3 +19,9 @@ mutation logUserIn($token: String!) {
   logUserIn(token: $token) @client
 }
 `;
+
+export const LOCAL_LOG_OUT = gql`
+mutation logUserOut{
+  logUserOut @client
+}
+`;
