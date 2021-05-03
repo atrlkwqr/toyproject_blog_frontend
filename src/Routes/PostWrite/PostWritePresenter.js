@@ -1,17 +1,31 @@
-import React, { Component } from 'react';
-import { CKEditor } from "@ckeditor/ckeditor5-react";
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import React from 'react';
+import 'codemirror/lib/codemirror.css';
+import '@toast-ui/editor/dist/toastui-editor.css';
+import { Editor } from '@toast-ui/react-editor';
+import Button from "../../Components/Button"
+import { ToastContainer } from 'react-toastify';
+import Input from "../../Components/Input"
 
-class PostListPresenter extends Component {
 
-    render(){
-        return (
-            <>
-                <CKEditor editor={ClassicEditor} />
-            </>
-        )
-    }
-
+export default ({
+    clickFunc,
+    editorRef,
+    handleFocus,
+    title
+}) => {
+    return (
+        <>
+        <ToastContainer/>
+        <Input placeholder="title" {...title}></Input>
+        <Editor
+        previewStyle="vertical"
+        height="400px"
+        initialEditType="markdown"
+        initialValue="hello"
+        ref={editorRef}
+        onFocus={handleFocus}
+      />
+      <Button value="write" onClick={clickFunc}></Button>
+      </>
+    )
 }
-
-export default PostListPresenter;

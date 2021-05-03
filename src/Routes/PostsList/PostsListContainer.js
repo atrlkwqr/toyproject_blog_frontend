@@ -6,8 +6,6 @@ import {LOCAL_LOGGED_IN_QUERY} from "../../sharedQueries"
 
 const PostsListContainer = () => {
 
-  let id = 'cko2ln2vd0000il6p1rl0rkwy';
-
   const {
     data: {isLoggedIn}
   } = useQuery(LOCAL_LOGGED_IN_QUERY);
@@ -22,11 +20,10 @@ const PostsListContainer = () => {
         getPostList:getPostListResponse
       } = data;
   
-      //console.log(getPostListResponse)
-      //console.log(getPostListResponse.posts[0].postId)
         
       if(getPostListResponse!==null){
         posts = getPostListResponse.posts;
+        ////console.log(posts)
       }
 
       if(getPostListResponse.ok===true && getPostListResponse.posts===null){

@@ -9,6 +9,7 @@ export const GET_POST_LIST = gql `
   ){
     ok,
     posts{
+      title,
       postId
     }
   }

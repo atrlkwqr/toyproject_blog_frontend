@@ -55,7 +55,7 @@ export default ({
                             <TempPostMargin key={index}>
                             <TempPostBox>
                                 <TempPostText>
-                                    {dictObj.postId}
+                                    {dictObj.title}
                                 </TempPostText>
                             </TempPostBox>
                             </ TempPostMargin>

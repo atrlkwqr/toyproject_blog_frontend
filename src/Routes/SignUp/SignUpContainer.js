@@ -1,4 +1,4 @@
-import React, {MouseEvent, useState} from "react";
+import React, {useState} from "react";
 import SignUpPresenter from "./SignUpPresenter";
 import { useInput } from "../../utils";
 import {useMutation} from "@apollo/react-hooks";
