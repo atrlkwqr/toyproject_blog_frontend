@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styled from "styled-components";
+import {Link} from "react-router-dom";
 
 const TotalBox = styled.div`
     display:flex;
@@ -38,12 +39,18 @@ const TempPostMargin = styled.div`
     margin-bottom:50px;
 `;
 
+const AtagForm = styled.a`
+    color: inherit;
+    text-decoration: none;
+`;
+
 
 export default ({
     posts,
     loading
 }
 ) => {
+    console.log(posts)
     return (
         <React.Fragment>
         {loading?
@@ -55,7 +62,7 @@ export default ({
                             <TempPostMargin key={index}>
                             <TempPostBox>
                                 <TempPostText>
-                                    {dictObj.title}
+                                    <AtagForm href = {"/"+dictObj.postId}>{dictObj.title}</AtagForm>
                                 </TempPostText>
                             </TempPostBox>
                             </ TempPostMargin>
