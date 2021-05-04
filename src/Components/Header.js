@@ -44,6 +44,10 @@ const BannerBox = styled.img`
     width : 900px;
 `;
 
+const ContentMargin = styled.div`
+    margin-bottom:30px;
+`;
+
 const Header = () => {
 
     const {data: {
@@ -98,8 +102,12 @@ const Header = () => {
                 }
             </MenuSpace>
         </HeaderSpace>
-        {isLoggedIn?<></> : 
-        <BannerBox src={banner} />}
+        {isLoggedIn?
+        <ContentMargin /> : 
+        <>
+            <BannerBox src={banner} />
+            <ContentMargin />
+        </>}
         </BannerWrapper>
     );
 }
