@@ -50,8 +50,8 @@ export default ({
             <MainArea>
                 <Input placeholder="email" {...email}></Input>
                 <Input placeholder="id" {...userId}></Input>
-                <Input placeholder="password" {...password}></Input>
-                <Input placeholder="password confirmation" {...password_confirmation}></Input>
+                <Input placeholder="password" type="password" {...password}></Input>
+                <Input placeholder="password confirmation" type="password" {...password_confirmation}></Input>
                 <Button value="signup" onClick={clickFunc}></Button>
             </MainArea>
             <SignUpFooterArea></SignUpFooterArea>

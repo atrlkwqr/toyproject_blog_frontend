@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import LoginPresenter from "./LoginPresenter";
-import { useInput, LOCAL_LOG_IN } from "../../utils";
+import { useInput, generateSaltedHash, LOCAL_LOG_IN } from "../../utils";
 import {useMutation} from "@apollo/react-hooks";
 import { LOGIN } from './LoginQuerie';
 import { toast } from 'react-toastify';
@@ -23,7 +23,7 @@ const LoginContainer = () => {
             }
         } = await getAccountMutation({variables: {
                 email:email.value,
-                password:password.value
+                password:generateSaltedHash(password.value)
         }});
 
         if(!loading){

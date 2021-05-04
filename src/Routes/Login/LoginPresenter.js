@@ -51,7 +51,7 @@ const LoginPresenter = ({
             <LoginTitleArea>{"Log in to blog"}</LoginTitleArea>
             <MainArea>
                 <Input placeholder="email" {...email}></Input>
-                <Input placeholder="password" {...password}></Input>
+                <Input placeholder="password" type="password" {...password}></Input>
                 <Button value="login" onClick={clickFunc}></Button>
             </MainArea>
             <LoginFooterArea>

@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import SignUpPresenter from "./SignUpPresenter";
-import { useInput } from "../../utils";
+import { useInput, generateSaltedHash } from "../../utils";
 import {useMutation} from "@apollo/react-hooks";
 import { SIGNUP } from "./SignUpQuerie";
 import { toast } from 'react-toastify';
@@ -30,7 +30,7 @@ const SignUpContainer = () => {
         } = await registerAccountMutation({variables: {
                 email:email.value,
                 userId:userId.value,
-                password:password.value
+                password:generateSaltedHash(password.value)
         }});
 
         if(!loading){

@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from "react-router-dom";
 import styled from 'styled-components';
 import blogImage from "../images/BlogLogo.png"
+import banner from "../images/Banner.jpg"
 import {LOCAL_LOGGED_IN_QUERY} from "../sharedQueries"
 import {useQuery} from "@apollo/client";
 import {GET_PROFILE} from "../Routes/Profile/ProfileQuerie"
@@ -33,6 +34,16 @@ const ProfileBox = styled.div `
 
 `;
 
+const BannerWrapper = styled.div`
+    display:flex;
+    flex-direction:column;
+`;
+
+const BannerBox = styled.img`
+    height : 400px;
+    width : 900px;
+`;
+
 const Header = () => {
 
     const {data: {
@@ -54,6 +65,7 @@ const Header = () => {
     }
 
     return (
+        <BannerWrapper>
         <HeaderSpace>
             <a href="/">
                 <LogoSpace src={blogImage}></LogoSpace>
@@ -61,14 +73,16 @@ const Header = () => {
             <MenuSpace>
                 {
                     isLoggedIn
-                        ? <ProfileBox>
-
+                        ? 
+                        
+                            <ProfileBox>
                                 <h1>{userId}</h1>
                                 <Mutation mutation={LOCAL_LOG_OUT}>
                                     {
                                         (logOutMutation, {loading}) => {
 
-                                            return <Button value="logout"
+                                            return <Button
+                                                value="logout"
                                                 onClick={() => {
                                                     window.location.href = "/";
                                                     logOutMutation();
@@ -79,10 +93,14 @@ const Header = () => {
                                     }
                                 </Mutation>
                             </ProfileBox>
+                            
                         : <Link to="/login">login</Link>
                 }
             </MenuSpace>
         </HeaderSpace>
+        {isLoggedIn?<></> : 
+        <BannerBox src={banner} />}
+        </BannerWrapper>
     );
 }
 

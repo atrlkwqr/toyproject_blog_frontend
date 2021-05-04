@@ -1,5 +1,7 @@
 import { useState } from "react";
 import {gql} from "apollo-boost";
+import crypto from "crypto";
+import dotenv from "dotenv";
 
 export const useInput = (defaultValue) => {
     const [value, setValue] = useState(defaultValue);
@@ -12,7 +14,14 @@ export const useInput = (defaultValue) => {
     };
   
     return { value, onChange, setValue };
-  };
+};
+
+export const generateSaltedHash = (password) => {
+  const {REACT_APP_SALT} = process.env;
+  const salt = `${REACT_APP_SALT}`;
+  const hashedPassword = crypto.createHmac('sha256',salt).update(password).digest('hex');
+  return hashedPassword;
+};
 
 export const LOCAL_LOG_IN = gql`
 mutation logUserIn($token: String!) {
