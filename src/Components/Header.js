@@ -40,8 +40,9 @@ const BannerWrapper = styled.div`
 `;
 
 const BannerBox = styled.img`
+    justify-content:center;
     height : 400px;
-    width : 900px;
+
 `;
 
 const ContentMargin = styled.div`

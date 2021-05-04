@@ -10,7 +10,7 @@ const TotalBox = styled.div`
 const CategoriesBox = styled.div`
     display:flex;
     flex-direction:row;
-    background-color:yellow;
+    background-color:rgba(204, 204, 204, .1);
     width:300px;
 `;
 
