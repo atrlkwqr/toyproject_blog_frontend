@@ -6,7 +6,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const SignUpBox = styled.div `
-    background-color: rgba(255, 255, 128, .5);
+    background-color: rgba(204, 204, 204, .1);
     height: 500px;
     display:grid;
     grid-auto-flow: row;

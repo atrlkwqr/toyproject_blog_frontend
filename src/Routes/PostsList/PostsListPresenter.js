@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from "styled-components";
 import moment from "moment";
+import Loading from "../../Components/Loading"
 
 const TotalBox = styled.div`
     display:flex;
@@ -63,7 +64,7 @@ export default ({
     return (
         <React.Fragment>
         {loading?
-             <h1>loading</h1>:
+             <Loading />:
             <TotalBox>
                 <TotalPostBox>
                     {posts.map((dictObj, index) => {
