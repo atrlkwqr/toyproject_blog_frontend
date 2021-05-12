@@ -3,6 +3,7 @@ import PostsListPresenter from "./PostsListPresenter";
 import {useQuery} from "@apollo/client";
 import { GET_POST_LIST } from "./PostsListQuerie";
 import {LOCAL_LOGGED_IN_QUERY} from "../../sharedQueries"
+import Loading from "../../Components/Loading"
 
 const PostsListContainer = () => {
 
@@ -14,7 +15,6 @@ const PostsListContainer = () => {
 
   let posts;
 
-  //if(isLoggedIn===true){
     if(!loading){ 
       const {
         getPostList:getPostListResponse
@@ -23,14 +23,14 @@ const PostsListContainer = () => {
         
       if(getPostListResponse!==null){
         posts = getPostListResponse.posts;
-        ////console.log(posts)
       }
 
       if(getPostListResponse.ok===true && getPostListResponse.posts===null){
         posts = [];
       }
-    } 
-  //}
+    } else {
+      <Loading />
+    }
 
   return <PostsListPresenter loading={loading} posts={posts}/>
 

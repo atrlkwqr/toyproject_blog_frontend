@@ -13,22 +13,21 @@ const MainArea = styled.div `
 `;
 
 export default({title, postHtml}) => {
-    //console.log(title)
     return (
-        //loading?<></>:
-        <> < ToastContainer /> 
-        <MainArea>
-            <Viewer
-                initialValue={title}
-                customHTMLSanitizer={html => {
-                    return DOMPurify.sanitize(html)
-                }}/>
-            <Viewer
-                initialValue={postHtml}
-                customHTMLSanitizer={html => {
-                    return DOMPurify.sanitize(html)
-                }}/>
-        </MainArea>
-    </>
+        <> 
+            < ToastContainer /> 
+            <MainArea>
+                <Viewer
+                    initialValue={title}
+                    customHTMLSanitizer={html => {
+                        return DOMPurify.sanitize(html)
+                    }}/>
+                <Viewer
+                    initialValue={postHtml}
+                    customHTMLSanitizer={html => {
+                        return DOMPurify.sanitize(html)
+                    }}/>
+            </MainArea>
+        </>
     )
 }

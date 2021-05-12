@@ -5,6 +5,7 @@ import {toast} from 'react-toastify';
 import {WRITE} from './PostWriteQuerie';
 import {useInput} from "../../utils";
 import axios from "axios";
+import Loading from "../../Components/Loading"
 
 const PostWriteContainer = () => {
 
@@ -61,6 +62,8 @@ const PostWriteContainer = () => {
                     toast("Error!")
 
                 }
+            } else {
+                <Loading />
             }
         }
     };

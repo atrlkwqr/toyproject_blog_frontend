@@ -4,6 +4,8 @@ import { useQuery} from "@apollo/client";
 import Body from "./Body";
 import Routes from "./Routes";
 import {LOCAL_LOGGED_IN_QUERY} from "../sharedQueries";
+import Header from "../Components/Header";
+import Footer from "../Components/Footer";
 
 const App = () => {
 
@@ -15,7 +17,9 @@ const App = () => {
         <div className="App">
             <Router>
                 <Body>
+                    <Header />
                     <Routes isLoggedIn={isLoggedIn}/>
+                    <Footer />
                 </Body>
             </Router>
         </div>

@@ -4,6 +4,7 @@ import { useInput, generateSaltedHash } from "../../utils";
 import {useMutation} from "@apollo/react-hooks";
 import { SIGNUP } from "./SignUpQuerie";
 import { toast } from 'react-toastify';
+import Loading from "../../Components/Loading"
 
 const SignUpContainer = () => {
     const email = useInput("");
@@ -42,6 +43,8 @@ const SignUpContainer = () => {
                 toast("Error!")
 
             }
+        } else {
+            <Loading />
         }
 
     }

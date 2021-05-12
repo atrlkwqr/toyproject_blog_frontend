@@ -30,7 +30,6 @@ const getPostFunc = async (postId) => {
 }
 
 const PostContainer = (props) => {
-
     const result = props.match.params
     const postId = result.post_id;
     const [postHtml, setPostHtml] = useState(null);
