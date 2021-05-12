@@ -12,10 +12,10 @@ const MainArea = styled.div `
     justify-content:center;
 `;
 
-export default({loading, title, contents}) => {
-    console.log(title)
+export default({title, postHtml}) => {
+    //console.log(title)
     return (
-        loading?<></>:
+        //loading?<></>:
         <> < ToastContainer /> 
         <MainArea>
             <Viewer
@@ -24,7 +24,7 @@ export default({loading, title, contents}) => {
                     return DOMPurify.sanitize(html)
                 }}/>
             <Viewer
-                initialValue={contents}
+                initialValue={postHtml}
                 customHTMLSanitizer={html => {
                     return DOMPurify.sanitize(html)
                 }}/>

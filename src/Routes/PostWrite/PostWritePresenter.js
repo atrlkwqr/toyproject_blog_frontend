@@ -21,7 +21,6 @@ export default ({
         previewStyle="vertical"
         height="400px"
         initialEditType="markdown"
-        initialValue="hello"
         ref={editorRef}
         onFocus={handleFocus}
       />
