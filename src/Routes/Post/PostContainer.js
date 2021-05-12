@@ -4,15 +4,16 @@ import {useQuery} from "@apollo/client";
 import {GET_POST} from "./PostQuerie";
 import axios from "axios";
 import Loading from "../../Components/Loading"
+import {fileServerAddr} from "../../utils"
 
-const fileServerAddr = "http://localhost:5000/";
+const fileServer = fileServerAddr()
 
 const getPostFunc = async (postId) => {
     const jwt = localStorage.getItem("token");
     const res = await axios({
         method: "get",
         //url: fileServerAddr.concat(postId.toString()),
-        url: fileServerAddr.concat("l/".concat(postId.toString())),
+        url: fileServer.concat("l/".concat(postId.toString())),
         headers: {
             Authorization: jwt,
             "Content-Type": "multipart/form-data"

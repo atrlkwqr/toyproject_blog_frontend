@@ -1,7 +1,6 @@
 import { useState } from "react";
 import {gql} from "apollo-boost";
 import crypto from "crypto";
-import dotenv from "dotenv";
 
 export const useInput = (defaultValue) => {
     const [value, setValue] = useState(defaultValue);
@@ -34,3 +33,10 @@ mutation logUserOut{
   logUserOut @client
 }
 `;
+
+
+export const fileServerAddr = () => {
+  const {REACT_APP_FILESERVER} = process.env;
+  const fileServer = `${REACT_APP_FILESERVER}`;
+  return fileServer;
+}
