@@ -10,6 +10,24 @@ const TotalBox = styled.div`
     flex-direction:row;
 `;
 
+const TotalCategoriesBox = styled.div`
+    display:flex;
+    flex-direction:column;
+    background-color:rgba(204, 204, 204, .1);
+    width:300px;
+`;
+
+const AddCategoriesBox = styled.div`
+    display:flex;
+    flex-direction:row;
+    background-color:rgba(204, 204, 204, .1);
+    width:300px;
+`;
+
+const TempCategoryMargin = styled.div`
+    margin-right:15%;
+`;
+
 const CategoriesBox = styled.div`
     display:flex;
     flex-direction:row;
@@ -86,11 +104,17 @@ export default ({
                         )
                     })}
                 </TotalPostBox>
-                    <CategoriesBox>
-                        <Input placeholder="input category" {...category}></Input>
-                        <Button value="add category" onClick={clickFunc}></Button>
-                </CategoriesBox>
-            </TotalBox>
+                    <TotalCategoriesBox>
+                        <AddCategoriesBox>
+                            <Input placeholder="category title" {...category}></Input>
+                            <TempCategoryMargin />
+                            <Button value="add" onClick={clickFunc}></Button>
+                        </AddCategoriesBox>
+                        <CategoriesBox>
+                            cate
+                        </CategoriesBox>
+                    </TotalCategoriesBox>
+                </TotalBox>
         }
         </React.Fragment>
     )

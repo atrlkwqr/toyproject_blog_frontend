@@ -12,7 +12,7 @@ const PostWriteContainer = () => {
     const editorRef = React.createRef();
 
     const title = useInput("");
-    const [fileData, setFileData] = useState(null);
+    const categoryTitle = useInput("");
     const [submitting, setSubmitting] = useState(false);
 
     const [writePostMutation, {
@@ -38,8 +38,10 @@ const PostWriteContainer = () => {
 
             const formData = new FormData();
             formData.append("title", title.value);
+            formData.append("categoryTitle", categoryTitle.value);
             formData.append("streamfile", contents);
             formData.append("jwt", jwt);
+
 
             const writePostResponse = await axios({
                 method: "post",
@@ -76,7 +78,8 @@ const PostWriteContainer = () => {
         editorRef={editorRef}
         clickFunc={clickFunc}
         handleFocus={handleFocus}
-        title={title}></PostWritePresenter>;
+        title={title}
+        categoryTitle={categoryTitle}></PostWritePresenter>;
 }
 
 export default PostWriteContainer;

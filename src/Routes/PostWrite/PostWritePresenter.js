@@ -11,12 +11,14 @@ export default ({
     clickFunc,
     editorRef,
     handleFocus,
-    title
+    title,
+    categoryTitle
 }) => {
     return (
         <>
         <ToastContainer/>
         <Input placeholder="title" {...title}></Input>
+        <Input placeholder="category" {...categoryTitle}></Input>
         <Editor
         previewStyle="vertical"
         height="400px"

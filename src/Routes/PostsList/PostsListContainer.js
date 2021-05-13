@@ -8,7 +8,6 @@ import Loading from "../../Components/Loading"
 import { useInput } from "../../utils";
 
 const PostsListContainer = () => {
-  
   const {data, loading} = useQuery(GET_POST_LIST);
   const [addCategoryMutation] = useMutation(ADD_CATEGORIES);
   const category = useInput("");
@@ -22,9 +21,7 @@ const PostsListContainer = () => {
   const clickFunc = async (e) => { 
 
     const {
-      data: {
-          addCategory: addCategoryResponse
-      }
+        addCategory: addCategoryResponse
     } = await addCategoryMutation({variables: {
           categoryTitle:category.value
     }});
