@@ -2,6 +2,8 @@ import React from 'react';
 import styled from "styled-components";
 import moment from "moment";
 import Loading from "../../Components/Loading"
+import Input from "../../Components/Input"
+import Button from "../../Components/Button"
 
 const TotalBox = styled.div`
     display:flex;
@@ -57,10 +59,11 @@ const AtagForm = styled.a`
 
 export default ({
     posts,
-    loading
+    loading,
+    category,
+    clickFunc
 }
 ) => {
-    console.log(posts)
     return (
         <React.Fragment>
         {loading?
@@ -84,7 +87,8 @@ export default ({
                     })}
                 </TotalPostBox>
                     <CategoriesBox>
-                    categories
+                        <Input placeholder="input category" {...category}></Input>
+                        <Button value="add category" onClick={clickFunc}></Button>
                 </CategoriesBox>
             </TotalBox>
         }

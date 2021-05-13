@@ -16,3 +16,13 @@ export const GET_POST_LIST = gql `
   }
 }
 `;
+
+export const ADD_CATEGORIES = gql`
+mutation addCategory(
+  $categoryTitle: String
+  ){
+  addCategory(
+    categoryTitle:$categoryTitle
+  )
+}
+`;
