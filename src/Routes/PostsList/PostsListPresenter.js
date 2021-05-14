@@ -4,6 +4,7 @@ import moment from "moment";
 import Loading from "../../Components/Loading"
 import Input from "../../Components/Input"
 import Button from "../../Components/Button"
+import Categories from "../../Components/Categories"
 
 const TotalBox = styled.div`
     display:flex;
@@ -111,7 +112,7 @@ export default ({
                             <Button value="add" onClick={clickFunc}></Button>
                         </AddCategoriesBox>
                         <CategoriesBox>
-                            cate
+                            <Categories />
                         </CategoriesBox>
                     </TotalCategoriesBox>
                 </TotalBox>

@@ -23,6 +23,8 @@ mutation addCategory(
   ){
   addCategory(
     categoryTitle:$categoryTitle
-  )
+  ){
+    categoryId
+  }
 }
 `;

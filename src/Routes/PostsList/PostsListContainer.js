@@ -42,7 +42,7 @@ const PostsListContainer = () => {
       if(getPostListResponse.ok===true && getPostListResponse.posts===null){
         posts = [];
       }
-
+      
     } else {
       <Loading />
     }
