@@ -1,10 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 class UserProfileImage extends Component {
-    render(){
-        return(
-            <img src = "profileimgurl"></img>
-        );
+    render() {
+        return <img src="profileimgurl"></img>;
     }
 }
 

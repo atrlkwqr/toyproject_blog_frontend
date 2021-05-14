@@ -1,3 +1,3 @@
 export default {
-    bgColor: "#fff"
-}
+    bgColor: "#fff",
+};

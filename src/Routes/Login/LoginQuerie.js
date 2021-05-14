@@ -1,16 +1,10 @@
-import {gql} from "@apollo/client";
+import { gql } from "@apollo/client";
 
 export const LOGIN = gql`
-mutation getAccount(
-  $email: String
-  $password: String
-  ){
-  getAccount(
-    email:$email
-    password:$password
-  ){
-    ok,
-    token
-  }
-}
+    mutation getAccount($email: String, $password: String) {
+        getAccount(email: $email, password: $password) {
+            ok
+            token
+        }
+    }
 `;

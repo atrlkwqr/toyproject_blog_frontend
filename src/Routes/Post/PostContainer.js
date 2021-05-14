@@ -1,12 +1,12 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import PostPresenter from "./PostPresenter";
-import {useQuery} from "@apollo/client";
-import {GET_POST} from "./PostQuerie";
+import { useQuery } from "@apollo/client";
+import { GET_POST } from "./PostQuerie";
 import axios from "axios";
-import Loading from "../../Components/Loading"
-import {fileServerAddr} from "../../utils"
+import Loading from "../../Components/Loading";
+import { fileServerAddr } from "../../utils";
 
-const fileServer = fileServerAddr()
+const fileServer = fileServerAddr();
 
 const getPostFunc = async (postId) => {
     const jwt = localStorage.getItem("token");
@@ -16,52 +16,50 @@ const getPostFunc = async (postId) => {
         url: fileServer.concat("l/".concat(postId.toString())),
         headers: {
             Authorization: jwt,
-            "Content-Type": "multipart/form-data"
+            "Content-Type": "multipart/form-data",
         },
-        responseType: 'blob'
+        responseType: "blob",
     });
 
     // const url = window.URL.createObjectURL(new Blob([res.data]));
     // console.log(url)
 
     var blob = new Blob([res.data]);
-    var postHtml = await(new Response(blob)).text();
+    var postHtml = await new Response(blob).text();
 
     return postHtml;
-}
+};
 
 const PostContainer = (props) => {
-    const result = props.match.params
+    const result = props.match.params;
     const postId = result.post_id;
     const [postHtml, setPostHtml] = useState(null);
     let title;
 
-    const {data, loading} = useQuery(GET_POST, {variables: {postId: postId}});
+    const { data, loading } = useQuery(GET_POST, {
+        variables: { postId: postId },
+    });
 
-    if(!loading){ 
-        const {
-            getPost:getPostResponse
-        } = data;
+    if (!loading) {
+        const { getPost: getPostResponse } = data;
 
-        if(getPostResponse.ok===true){
-            title = getPostResponse.title
+        if (getPostResponse.ok === true) {
+            title = getPostResponse.title;
         }
     }
-    
+
     useEffect(() => {
-        getPostFunc(postId).then(result => {
+        getPostFunc(postId).then((result) => {
             setPostHtml(result);
         });
-    }, [postHtml])
+    }, [postHtml]);
 
-    const isLoading = (postHtml == null);
+    const isLoading = postHtml == null;
     if (isLoading) {
-      return <Loading />
+        return <Loading />;
     } else {
-        return <PostPresenter title={title} postHtml={postHtml}/>
+        return <PostPresenter title={title} postHtml={postHtml} />;
     }
-
-
-}
+};
 
 export default PostContainer;

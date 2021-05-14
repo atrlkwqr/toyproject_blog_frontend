@@ -1,14 +1,17 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
-const InputBox = styled.input
-`
-  margin-bottom:10px;
+const InputBox = styled.input`
+    margin-bottom: 10px;
 `;
 
-const Input = ({placeholder, type, value, onChange}) => (
-  <InputBox placeholder={placeholder} type={type} value={value} onChange={onChange}></InputBox>
+const Input = ({ placeholder, type, value, onChange }) => (
+    <InputBox
+        placeholder={placeholder}
+        type={type}
+        value={value}
+        onChange={onChange}
+    ></InputBox>
 );
-
 
 export default Input;

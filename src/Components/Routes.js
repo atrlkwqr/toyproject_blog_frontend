@@ -1,5 +1,5 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import SignUp from "../Routes/SignUp";
 import Login from "../Routes/Login";
@@ -8,7 +8,7 @@ import PostsList from "../Routes/PostsList";
 import PostWrite from "../Routes/PostWrite";
 import Post from "../Routes/Post";
 
-const LoggedInRoutes = () => 
+const LoggedInRoutes = () => (
     <Router>
         <Switch>
             <Route exact path="/" component={PostsList} />
@@ -16,9 +16,9 @@ const LoggedInRoutes = () =>
             <Route exact path="/:post_id" component={Post} />
         </Switch>
     </Router>
+);
 
-
-const LoggedOutRoutes = () =>
+const LoggedOutRoutes = () => (
     <Router>
         <Switch>
             <Route exact path="/signup" component={SignUp} />
@@ -28,11 +28,10 @@ const LoggedOutRoutes = () =>
             <Route exact path="/:post_id" component={Post} />
         </Switch>
     </Router>
+);
 
-
-
-const AppRouter = ({isLoggedIn}) => {
-    return(isLoggedIn? <LoggedInRoutes /> : <LoggedOutRoutes /> )
-} 
+const AppRouter = ({ isLoggedIn }) => {
+    return isLoggedIn ? <LoggedInRoutes /> : <LoggedOutRoutes />;
+};
 
 export default AppRouter;

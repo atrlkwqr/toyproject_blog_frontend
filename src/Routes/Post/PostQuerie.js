@@ -1,16 +1,12 @@
-import {gql} from "@apollo/client";
+import { gql } from "@apollo/client";
 
 //postslist에서 가져옴
-export const GET_POST = gql `
-  query getPost(
-    $postId: String
-  ){
-  getPost(
-    postId: $postId
-  ){
-    ok,
-    title,
-    contents
-  }
-}
+export const GET_POST = gql`
+    query getPost($postId: String) {
+        getPost(postId: $postId) {
+            ok
+            title
+            contents
+        }
+    }
 `;
