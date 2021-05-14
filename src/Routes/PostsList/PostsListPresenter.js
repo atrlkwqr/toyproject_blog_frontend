@@ -74,7 +74,7 @@ const AtagForm = styled.a`
     text-decoration: none;
 `;
 
-export default ({ posts, loading, category, clickFunc }) => {
+export default ({ posts, loading, category, clickFunc, isLoggedIn }) => {
     return (
         <React.Fragment>
             {loading ? (
@@ -104,19 +104,26 @@ export default ({ posts, loading, category, clickFunc }) => {
                             );
                         })}
                     </TotalPostBox>
-                    <TotalCategoriesBox>
-                        <AddCategoriesBox>
-                            <Input
-                                placeholder="category title"
-                                {...category}
-                            ></Input>
-                            <TempCategoryMargin />
-                            <Button value="add" onClick={clickFunc}></Button>
-                        </AddCategoriesBox>
-                        <CategoriesBox>
-                            <Categories />
-                        </CategoriesBox>
-                    </TotalCategoriesBox>
+                    {isLoggedIn ? (
+                        <TotalCategoriesBox>
+                            <AddCategoriesBox>
+                                <Input
+                                    placeholder="category title"
+                                    {...category}
+                                ></Input>
+                                <TempCategoryMargin />
+                                <Button
+                                    value="add"
+                                    onClick={clickFunc}
+                                ></Button>
+                            </AddCategoriesBox>
+                            <CategoriesBox>
+                                <Categories />
+                            </CategoriesBox>
+                        </TotalCategoriesBox>
+                    ) : (
+                        <></>
+                    )}
                 </TotalBox>
             )}
         </React.Fragment>

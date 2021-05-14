@@ -53,6 +53,7 @@ const PostsListContainer = () => {
             posts={posts}
             category={category}
             clickFunc={clickFunc}
+            isLoggedIn={isLoggedIn}
         />
     );
 };

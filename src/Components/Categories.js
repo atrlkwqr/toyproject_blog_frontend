@@ -30,16 +30,21 @@ const Categories = () => {
 
     let categories;
 
-    if (isLoggedIn === true) {
-        if (!loading) {
-            const { getUserCategories: getUserCategoriesResponse } = data;
+    if (!loading) {
+        const { getUserCategories: getUserCategoriesResponse } = data;
 
-            if (getUserCategoriesResponse.ok === true) {
-                categories = getUserCategoriesResponse.categories;
-            }
-        } else {
-            <Loading />;
+        if (getUserCategoriesResponse.ok === true) {
+            categories = getUserCategoriesResponse.categories;
         }
+
+        if (
+            getUserCategoriesResponse.ok === true &&
+            getUserCategoriesResponse.categories === null
+        ) {
+            categories = [];
+        }
+    } else {
+        <Loading />;
     }
 
     return (
