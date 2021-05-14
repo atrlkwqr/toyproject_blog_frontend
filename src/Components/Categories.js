@@ -57,7 +57,12 @@ const Categories = () => {
                         return (
                             <MarginBox key={index}>
                                 <CategoryBox>
-                                    <AtagForm href={"/" + dictObj.categoryId}>
+                                    <AtagForm
+                                        href={
+                                            "/youhaveselectedcategory/" +
+                                            dictObj.categoryId
+                                        }
+                                    >
                                         {dictObj.categoryTitle}
                                     </AtagForm>
                                 </CategoryBox>

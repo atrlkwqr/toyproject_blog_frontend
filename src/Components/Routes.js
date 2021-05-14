@@ -7,6 +7,7 @@ import ResetPassword from "../Routes/ResetPassword";
 import PostsList from "../Routes/PostsList";
 import PostWrite from "../Routes/PostWrite";
 import Post from "../Routes/Post";
+import CategoryPost from "../Routes/CategoryPost";
 
 const LoggedInRoutes = () => (
     <Router>
@@ -14,6 +15,11 @@ const LoggedInRoutes = () => (
             <Route exact path="/" component={PostsList} />
             <Route exact path="/post_write" component={PostWrite} />
             <Route exact path="/:post_id" component={Post} />
+            <Route
+                exact
+                path="/youhaveselectedcategory/:category_id"
+                component={CategoryPost}
+            />
         </Switch>
     </Router>
 );
@@ -25,7 +31,6 @@ const LoggedOutRoutes = () => (
             <Route exact path="/login" component={Login} />
             <Route exact path="/" component={PostsList} />
             <Route exact path="/reset_password" component={ResetPassword} />
-            <Route exact path="/:post_id" component={Post} />
         </Switch>
     </Router>
 );
