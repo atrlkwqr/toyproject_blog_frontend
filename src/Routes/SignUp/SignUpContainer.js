@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import SignUpPresenter from "./SignUpPresenter";
-import { useInput, generateSaltedHash } from "../../utils";
+import {
+    useInput,
+    generateSaltedHash,
+    checkEmailRegularExpression,
+    checkPasswordRegularExpression,
+} from "../../utils";
 import { useMutation } from "@apollo/react-hooks";
 import { SIGNUP } from "./SignUpQuerie";
 import { toast } from "react-toastify";
@@ -10,16 +15,38 @@ const SignUpContainer = () => {
     const email = useInput("");
     const userId = useInput("");
     const password = useInput("");
-    const password_confirmation = useInput("");
+    const passwordConfirmation = useInput("");
     const [submitting, setSubmitting] = useState(false);
+    let emailColor = "red";
+    let passwordColor = "red";
+    let passwordConfirmationColor = "red";
 
     const [registerAccountMutation, { loading }] = useMutation(SIGNUP);
+
+    if (email.value.length >= 7) {
+        if (checkEmailRegularExpression(email.value)) {
+            emailColor = "blue";
+        }
+    }
+
+    if (password.value.length >= 8) {
+        if (checkPasswordRegularExpression(password.value)) {
+            passwordColor = "blue";
+        }
+    }
+
+    if (
+        password.value === passwordConfirmation.value &&
+        password.value.length != 0
+    ) {
+        passwordConfirmationColor = "blue";
+    }
 
     const clickFunc = async (e) => {
         setSubmitting(true);
         e.preventDefault();
 
-        if (password.value !== password_confirmation.value) {
+        if (password.value !== passwordConfirmation.value) {
             toast("Does not match password and password_confirmation");
             return false;
         }
@@ -54,8 +81,11 @@ const SignUpContainer = () => {
             email={email}
             userId={userId}
             password={password}
-            password_confirmation={password_confirmation}
+            passwordConfirmation={passwordConfirmation}
             clickFunc={clickFunc}
+            emailColor={emailColor}
+            passwordColor={passwordColor}
+            passwordConfirmationColor={passwordConfirmationColor}
         ></SignUpPresenter>
     );
 };

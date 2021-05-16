@@ -6,6 +6,8 @@ const Container = styled.button.attrs({
 })`
     width: 90px;
     height: 25px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 `;
 
 const Button = ({ value, onClick }) => {

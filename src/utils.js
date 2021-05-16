@@ -42,3 +42,20 @@ export const fileServerAddr = () => {
     const fileServer = `${REACT_APP_FILESERVER}`;
     return fileServer;
 };
+
+export const checkEmailRegularExpression = (email) => {
+    var emailRule =
+        /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+    if (!emailRule.test(email)) {
+        return false;
+    }
+    return true;
+};
+
+export const checkPasswordRegularExpression = (password) => {
+    var regex = /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
+    if (!regex.test(password)) {
+        return false;
+    }
+    return true;
+};

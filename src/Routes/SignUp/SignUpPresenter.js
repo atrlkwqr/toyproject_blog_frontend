@@ -36,13 +36,53 @@ const SignUpFooterArea = styled.div`
     padding-right: 50px;
 `;
 
+const Description = styled.div`
+    display: flex;
+    justify-content: start;
+    font-size: 8px;
+    color: ${(prop) => (prop.color ? prop.color : "black")};
+`;
+
 export default ({
     email,
     userId,
     password,
-    password_confirmation,
+    passwordConfirmation,
     clickFunc,
+    emailColor,
+    passwordColor,
+    passwordConfirmationColor,
 }) => {
+    let emailDescription;
+    let passwordDescription;
+    let passwordConfirmationDescription;
+
+    if (email.value.length > 0) {
+        emailDescription = "서비스에 사용할 이메일을 입력해주세요.";
+        if (emailColor === "blue")
+            emailDescription = "올바른 이메일 형식입니다.";
+    } else {
+        emailDescription = "";
+    }
+
+    if (password.value.length > 0) {
+        passwordDescription =
+            "패스워드 형식이 잘못되었습니다. 특수문자 / 문자 / 숫자 포함 형태의 8~15자리 이내의 암호 정규식을 맞춰주세요.";
+        if (passwordColor === "blue")
+            passwordDescription = "올바른 패스워드 형식입니다.";
+    } else {
+        passwordDescription = "";
+    }
+
+    if (passwordConfirmation.value.length > 0) {
+        passwordConfirmationDescription =
+            "패스워드가 일치하지 않습니다. 확인해주세요.";
+        if (passwordConfirmationColor === "blue")
+            passwordConfirmationDescription = "패스워드가 일치합니다.";
+    } else {
+        passwordConfirmationDescription = "";
+    }
+
     return (
         <>
             <ToastContainer />
@@ -50,17 +90,26 @@ export default ({
                 <SignTitleArea>{"sign up"}</SignTitleArea>
                 <MainArea>
                     <Input placeholder="email" {...email}></Input>
+                    <Description color={emailColor}>
+                        {emailDescription}
+                    </Description>
                     <Input placeholder="id" {...userId}></Input>
                     <Input
                         placeholder="password"
                         type="password"
                         {...password}
                     ></Input>
+                    <Description color={passwordColor}>
+                        {passwordDescription}
+                    </Description>
                     <Input
                         placeholder="password confirmation"
                         type="password"
-                        {...password_confirmation}
+                        {...passwordConfirmation}
                     ></Input>
+                    <Description color={passwordConfirmationColor}>
+                        {passwordConfirmationDescription}
+                    </Description>
                     <Button value="signup" onClick={clickFunc}></Button>
                 </MainArea>
                 <SignUpFooterArea></SignUpFooterArea>

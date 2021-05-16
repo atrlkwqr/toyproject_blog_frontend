@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const InputBox = styled.input`
+    margin-top: 10px;
     margin-bottom: 10px;
 `;
 

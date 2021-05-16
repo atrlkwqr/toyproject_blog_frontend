@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 import LoginPresenter from "./LoginPresenter";
-import { useInput, generateSaltedHash, LOCAL_LOG_IN } from "../../utils";
+import {
+    useInput,
+    generateSaltedHash,
+    checkEmailRegularExpression,
+    checkPasswordRegularExpression,
+    LOCAL_LOG_IN,
+} from "../../utils";
 import { useMutation } from "@apollo/react-hooks";
 import { LOGIN } from "./LoginQuerie";
 import { toast } from "react-toastify";
@@ -10,8 +16,22 @@ const LoginContainer = () => {
     const password = useInput("");
     const [submitting, setSubmitting] = useState(false);
     const [localLogInMutation] = useMutation(LOCAL_LOG_IN);
+    let emailColor = "red";
+    let passwordColor = "red";
 
     const [getAccountMutation, { loading }] = useMutation(LOGIN);
+
+    if (email.value.length >= 7) {
+        if (checkEmailRegularExpression(email.value)) {
+            emailColor = "blue";
+        }
+    }
+
+    if (password.value.length >= 8) {
+        if (checkPasswordRegularExpression(password.value)) {
+            passwordColor = "blue";
+        }
+    }
 
     const clickFunc = async (e) => {
         setSubmitting(true);
@@ -48,6 +68,8 @@ const LoginContainer = () => {
             email={email}
             password={password}
             clickFunc={clickFunc}
+            emailColor={emailColor}
+            passwordColor={passwordColor}
         ></LoginPresenter>
     );
 };
