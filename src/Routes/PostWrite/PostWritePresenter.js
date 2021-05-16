@@ -5,6 +5,11 @@ import { Editor } from "@toast-ui/react-editor";
 import Button from "../../Components/Button";
 import { ToastContainer } from "react-toastify";
 import Input from "../../Components/Input";
+import styled from "styled-components";
+
+const InputMargin = styled.div`
+    margin-right: 10px;
+`;
 
 export default ({
     clickFunc,
@@ -16,8 +21,9 @@ export default ({
     return (
         <>
             <ToastContainer />
-            <Input placeholder="title" {...title}></Input>
-            <Input placeholder="category" {...categoryTitle}></Input>
+            <Input placeholder="Post Title" {...title}></Input>
+            <InputMargin />
+            <Input placeholder="Category" {...categoryTitle}></Input>
             <Editor
                 previewStyle="vertical"
                 height="400px"

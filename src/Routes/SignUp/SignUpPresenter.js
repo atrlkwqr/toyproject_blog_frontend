@@ -89,13 +89,13 @@ export default ({
             <SignUpBox>
                 <SignTitleArea>{"sign up"}</SignTitleArea>
                 <MainArea>
-                    <Input placeholder="email" {...email}></Input>
+                    <Input placeholder="Email" {...email}></Input>
                     <Description color={emailColor}>
                         {emailDescription}
                     </Description>
-                    <Input placeholder="id" {...userId}></Input>
+                    <Input placeholder="Id" {...userId}></Input>
                     <Input
-                        placeholder="password"
+                        placeholder="Password"
                         type="password"
                         {...password}
                     ></Input>
@@ -103,7 +103,7 @@ export default ({
                         {passwordDescription}
                     </Description>
                     <Input
-                        placeholder="password confirmation"
+                        placeholder="Password Confirmation"
                         type="password"
                         {...passwordConfirmation}
                     ></Input>

@@ -15,7 +15,6 @@ const TotalCategoriesBox = styled.div`
     display: flex;
     flex-direction: column;
     background-color: rgba(204, 204, 204, 0.1);
-    width: 300px;
 `;
 
 const AddCategoriesBox = styled.div`
@@ -39,7 +38,7 @@ const CategoriesBox = styled.div`
 const TotalPostBox = styled.div`
     display: flex;
     flex-direction: column;
-    width: 700px;
+    width: 70vw;
 `;
 
 const TempPostBox = styled.div`
@@ -108,7 +107,7 @@ export default ({ posts, loading, category, clickFunc, isLoggedIn }) => {
                         <TotalCategoriesBox>
                             <AddCategoriesBox>
                                 <Input
-                                    placeholder="category title"
+                                    placeholder="Category Title"
                                     {...category}
                                 ></Input>
                                 <TempCategoryMargin />

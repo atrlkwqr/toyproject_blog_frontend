@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Input from "../../Components/Input";
@@ -78,12 +78,12 @@ const LoginPresenter = ({
                 <LoginBox>
                     <LoginTitleArea>{"Log in to blog"}</LoginTitleArea>
                     <MainArea>
-                        <Input placeholder="email" {...email}></Input>
+                        <Input placeholder="Email" {...email}></Input>
                         <Description color={emailColor}>
                             {emailDescription}
                         </Description>
                         <Input
-                            placeholder="password"
+                            placeholder="Password"
                             type="password"
                             {...password}
                         ></Input>
