@@ -17,45 +17,47 @@ const PostWriteContainer = () => {
     const [writePostMutation, { loading }] = useMutation(WRITE);
 
     const clickFunc = async (e) => {
-        setSubmitting(true);
-        e.preventDefault();
+        if (submitting === false) {
+            setSubmitting(true);
+            e.preventDefault();
 
-        const contents = editorRef.current.getInstance().getHtml();
+            const contents = editorRef.current.getInstance().getHtml();
 
-        // const {     data: {         writePost: writePostResponse     } } = await
-        // writePostMutation({variables: {         title:title.value,         contents:
-        // contents }});
+            // const {     data: {         writePost: writePostResponse     } } = await
+            // writePostMutation({variables: {         title:title.value,         contents:
+            // contents }});
 
-        if (contents !== undefined && contents !== null) {
-            const jwt = localStorage.getItem("token");
+            if (contents !== undefined && contents !== null) {
+                const jwt = localStorage.getItem("token");
 
-            const formData = new FormData();
-            formData.append("title", title.value);
-            formData.append("categoryTitle", categoryTitle.value);
-            formData.append("streamfile", contents);
-            formData.append("jwt", jwt);
+                const formData = new FormData();
+                formData.append("title", title.value);
+                formData.append("categoryTitle", categoryTitle.value);
+                formData.append("streamfile", contents);
+                formData.append("jwt", jwt);
 
-            const writePostResponse = await axios({
-                method: "post",
-                url: "http://localhost:5000/uploads",
-                data: formData,
-                headers: {
-                    Authorization: jwt,
-                    "Content-Type": "multipart/form-data",
-                },
-            });
-            if (!loading) {
-                if (writePostResponse.status === 200) {
-                    toast("Write Success!");
-                    setTimeout(function () {
-                        window.location.href = "/";
-                    }, 4000);
+                const writePostResponse = await axios({
+                    method: "post",
+                    url: "http://localhost:5000/uploads",
+                    data: formData,
+                    headers: {
+                        Authorization: jwt,
+                        "Content-Type": "multipart/form-data",
+                    },
+                });
+                if (!loading) {
+                    if (writePostResponse.status === 200) {
+                        toast("Write Success!");
+                        setTimeout(function () {
+                            window.location.href = "/";
+                        }, 4000);
+                    } else {
+                        setSubmitting(false);
+                        toast("Error!");
+                    }
                 } else {
-                    setSubmitting(false);
-                    toast("Error!");
+                    <Loading />;
                 }
-            } else {
-                <Loading />;
             }
         }
     };

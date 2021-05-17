@@ -43,36 +43,38 @@ const SignUpContainer = () => {
     }
 
     const clickFunc = async (e) => {
-        setSubmitting(true);
-        e.preventDefault();
+        if (submitting === false) {
+            setSubmitting(true);
+            e.preventDefault();
 
-        if (password.value !== passwordConfirmation.value) {
-            toast("Does not match password and password_confirmation");
-            return false;
-        }
-
-        const {
-            data: { registerAccount: registerAccountResponse },
-        } = await registerAccountMutation({
-            variables: {
-                email: email.value,
-                userId: userId.value,
-                password: generateSaltedHash(password.value),
-            },
-        });
-
-        if (!loading) {
-            if (registerAccountResponse === true) {
-                toast("Register Success!");
-                setTimeout(function () {
-                    window.location.href = "/login";
-                }, 4000);
-            } else {
-                setSubmitting(false);
-                toast("Error!");
+            if (password.value !== passwordConfirmation.value) {
+                toast("Does not match password and password_confirmation");
+                return false;
             }
-        } else {
-            <Loading />;
+
+            const {
+                data: { registerAccount: registerAccountResponse },
+            } = await registerAccountMutation({
+                variables: {
+                    email: email.value,
+                    userId: userId.value,
+                    password: generateSaltedHash(password.value),
+                },
+            });
+
+            if (!loading) {
+                if (registerAccountResponse === true) {
+                    toast("Register Success!");
+                    setTimeout(function () {
+                        window.location.href = "/login";
+                    }, 4000);
+                } else {
+                    setSubmitting(false);
+                    toast("Error!");
+                }
+            } else {
+                <Loading />;
+            }
         }
     };
 

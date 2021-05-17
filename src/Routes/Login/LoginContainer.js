@@ -34,31 +34,33 @@ const LoginContainer = () => {
     }
 
     const clickFunc = async (e) => {
-        setSubmitting(true);
-        e.preventDefault();
+        if (submitting === false) {
+            setSubmitting(true);
+            e.preventDefault();
 
-        const {
-            data: { getAccount: getAccountResponse },
-        } = await getAccountMutation({
-            variables: {
-                email: email.value,
-                password: generateSaltedHash(password.value),
-            },
-        });
+            const {
+                data: { getAccount: getAccountResponse },
+            } = await getAccountMutation({
+                variables: {
+                    email: email.value,
+                    password: generateSaltedHash(password.value),
+                },
+            });
 
-        if (!loading) {
-            console.log(getAccountResponse);
-            let ok = getAccountResponse.ok;
-            let token = getAccountResponse.token;
-            if (ok === true || token !== null) {
-                toast("Login Success!");
-                await localLogInMutation({ variables: { token } });
-                setTimeout(function () {
-                    window.location.href = "/";
-                }, 3000);
-            } else {
-                setSubmitting(false);
-                toast("Error!");
+            if (!loading) {
+                console.log(getAccountResponse);
+                let ok = getAccountResponse.ok;
+                let token = getAccountResponse.token;
+                if (ok === true || token !== null) {
+                    toast("Login Success!");
+                    await localLogInMutation({ variables: { token } });
+                    setTimeout(function () {
+                        window.location.href = "/";
+                    }, 3000);
+                } else {
+                    setSubmitting(false);
+                    toast("Error!");
+                }
             }
         }
     };

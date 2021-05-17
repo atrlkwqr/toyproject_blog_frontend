@@ -19,25 +19,27 @@ const ResetPasswordContainer = () => {
     }
 
     const clickFunc = async (e) => {
-        setSubmitting(true);
+        if (submitting === false) {
+            setSubmitting(true);
 
-        const {
-            data: { resetPassword: resetPasswordResponse },
-        } = await resetPasswordMutation({
-            variables: {
-                email: email.value,
-            },
-        });
+            const {
+                data: { resetPassword: resetPasswordResponse },
+            } = await resetPasswordMutation({
+                variables: {
+                    email: email.value,
+                },
+            });
 
-        console.log(resetPasswordResponse);
-        if (resetPasswordResponse === true) {
-            toast("Send Email!");
-            setTimeout(function () {
-                window.location.href = "/login";
-            }, 4000);
-        } else {
-            setSubmitting(false);
-            toast("Error!");
+            console.log(resetPasswordResponse);
+            if (resetPasswordResponse === true) {
+                toast("Send Email!");
+                setTimeout(function () {
+                    window.location.href = "/login";
+                }, 4000);
+            } else {
+                setSubmitting(false);
+                toast("Error!");
+            }
         }
     };
 

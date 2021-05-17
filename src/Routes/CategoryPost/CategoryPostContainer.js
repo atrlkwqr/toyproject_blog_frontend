@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import CategoryPostPresenter from "./CategoryPostPresenter";
 import { useQuery } from "@apollo/client";
 import { GET_CATEGORY_POST_LIST, ADD_CATEGORIES } from "./CategoryPostQuerie";
@@ -15,6 +15,7 @@ const CategoryPostContainer = (props) => {
         variables: { categoryId: categoryId },
     });
     const [addCategoryMutation] = useMutation(ADD_CATEGORIES);
+    const [submitting, setSubmitting] = useState(false);
     const category = useInput("");
     let posts;
 
@@ -23,16 +24,20 @@ const CategoryPostContainer = (props) => {
     } = useQuery(LOCAL_LOGGED_IN_QUERY);
 
     const clickFunc = async (e) => {
-        const { addCategory: addCategoryResponse } = await addCategoryMutation({
-            variables: {
-                categoryTitle: category.value,
-            },
-        });
+        if (submitting === false) {
+            setSubmitting(true);
+            const { addCategory: addCategoryResponse } =
+                await addCategoryMutation({
+                    variables: {
+                        categoryTitle: category.value,
+                    },
+                });
 
-        ////추후 useEffect로 카테고리 박스 리렌더링 방식 바꿀예정
-        window.location.replace("/");
+            ////추후 useEffect로 카테고리 박스 리렌더링 방식 바꿀예정
+            window.location.replace("/");
 
-        console.log(addCategoryResponse);
+            console.log(addCategoryResponse);
+        }
     };
 
     if (!loading) {
