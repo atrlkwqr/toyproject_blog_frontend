@@ -4,6 +4,7 @@ import ResetPasswordPresenter from "./ResetPasswordPresenter";
 import { RESET_PASSWORD } from "./ResetPasswordQuerie";
 import { useMutation } from "@apollo/react-hooks";
 import { checkEmailRegularExpression } from "../../utils";
+import { toast } from "react-toastify";
 
 const ResetPasswordContainer = () => {
     const email = useInput("");
@@ -27,6 +28,17 @@ const ResetPasswordContainer = () => {
                 email: email.value,
             },
         });
+
+        console.log(resetPasswordResponse);
+        if (resetPasswordResponse === true) {
+            toast("Send Email!");
+            setTimeout(function () {
+                window.location.href = "/login";
+            }, 4000);
+        } else {
+            setSubmitting(false);
+            toast("Error!");
+        }
     };
 
     return (

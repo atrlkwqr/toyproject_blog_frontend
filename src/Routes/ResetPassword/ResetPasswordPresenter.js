@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import Button from "../../Components/Button";
 import Input from "../../Components/Input";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const ResetPasswordBox = styled.div`
     background-color: rgba(204, 204, 204, 0.1);
@@ -46,14 +48,21 @@ const ResetPasswordPresenter = ({ email, emailColor, clickFunc }) => {
     }
 
     return (
-        <ResetPasswordBox>
-            <ResetPasswordTitleArea>{"ResetPassword"}</ResetPasswordTitleArea>
-            <MainArea>
-                <Input placeholder="Email" {...email}></Input>
-                <Description color={emailColor}>{emailDescription}</Description>
-                <Button value="send" onClick={clickFunc}></Button>
-            </MainArea>
-        </ResetPasswordBox>
+        <>
+            <ToastContainer />
+            <ResetPasswordBox>
+                <ResetPasswordTitleArea>
+                    {"ResetPassword"}
+                </ResetPasswordTitleArea>
+                <MainArea>
+                    <Input placeholder="Email" {...email}></Input>
+                    <Description color={emailColor}>
+                        {emailDescription}
+                    </Description>
+                    <Button value="send" onClick={clickFunc}></Button>
+                </MainArea>
+            </ResetPasswordBox>
+        </>
     );
 };
 
