@@ -4,7 +4,7 @@ import Button from "../../Components/Button";
 import Input from "../../Components/Input";
 
 const ResetPasswordBox = styled.div`
-    background-color: rgba(255, 255, 128, 0.5);
+    background-color: rgba(204, 204, 204, 0.1);
     height: 300px;
     display: grid;
     grid-auto-flow: row;
@@ -27,20 +27,34 @@ const MainArea = styled.div`
     justify-content: center;
 `;
 
-class ResetPasswordPresenter extends Component {
-    render() {
-        return (
-            <ResetPasswordBox>
-                <ResetPasswordTitleArea>
-                    {"ResetPassword"}
-                </ResetPasswordTitleArea>
-                <MainArea>
-                    <Input placeholder="email"></Input>
-                    <Button value="send"></Button>
-                </MainArea>
-            </ResetPasswordBox>
-        );
+const Description = styled.div`
+    display: flex;
+    justify-content: start;
+    font-size: 8px;
+    color: ${(prop) => (prop.color ? prop.color : "black")};
+`;
+
+const ResetPasswordPresenter = ({ email, emailColor, clickFunc }) => {
+    let emailDescription;
+
+    if (email.value.length > 0) {
+        emailDescription = "이메일을 입력해주세요.";
+        if (emailColor === "blue")
+            emailDescription = "올바른 이메일 형식입니다.";
+    } else {
+        emailDescription = "";
     }
-}
+
+    return (
+        <ResetPasswordBox>
+            <ResetPasswordTitleArea>{"ResetPassword"}</ResetPasswordTitleArea>
+            <MainArea>
+                <Input placeholder="Email" {...email}></Input>
+                <Description color={emailColor}>{emailDescription}</Description>
+                <Button value="send" onClick={clickFunc}></Button>
+            </MainArea>
+        </ResetPasswordBox>
+    );
+};
 
 export default ResetPasswordPresenter;
