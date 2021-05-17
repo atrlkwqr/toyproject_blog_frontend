@@ -94,7 +94,7 @@ export default ({ posts, loading, category, clickFunc, isLoggedIn }) => {
                                         </TempPostInfo>
                                         <TempPostTitle>
                                             <AtagForm
-                                                href={"/" + dictObj.postId}
+                                                href={"/l/" + dictObj.postId}
                                             >
                                                 {dictObj.title}
                                             </AtagForm>

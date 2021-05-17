@@ -8,18 +8,20 @@ import PostsList from "../Routes/PostsList";
 import PostWrite from "../Routes/PostWrite";
 import Post from "../Routes/Post";
 import CategoryPost from "../Routes/CategoryPost";
+import Page404 from "../Components/Page404";
 
 const LoggedInRoutes = () => (
     <Router>
         <Switch>
             <Route exact path="/" component={PostsList} />
             <Route exact path="/post_write" component={PostWrite} />
-            <Route exact path="/:post_id" component={Post} />
+            <Route exact path="/l/:post_id" component={Post} />
             <Route
                 exact
                 path="/youhaveselectedcategory/:category_id"
                 component={CategoryPost}
             />
+            <Route component={Page404} />
         </Switch>
     </Router>
 );
@@ -31,6 +33,7 @@ const LoggedOutRoutes = () => (
             <Route exact path="/login" component={Login} />
             <Route exact path="/" component={PostsList} />
             <Route exact path="/reset_password" component={ResetPassword} />
+            <Route component={Page404} />
         </Switch>
     </Router>
 );
