@@ -28,7 +28,9 @@ const MenuSpace = styled.div`
     align-items: center;
 `;
 
-const ProfileBox = styled.div``;
+const ProfileBox = styled.div`
+    margin-right: 30px;
+`;
 
 const BannerWrapper = styled.div`
     display: flex;

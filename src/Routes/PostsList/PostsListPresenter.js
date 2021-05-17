@@ -39,6 +39,7 @@ const TotalPostBox = styled.div`
     display: flex;
     flex-direction: column;
     width: 70vw;
+    min-height: 700px;
 `;
 
 const TempPostBox = styled.div`
