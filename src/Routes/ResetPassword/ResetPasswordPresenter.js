@@ -36,15 +36,44 @@ const Description = styled.div`
     color: ${(prop) => (prop.color ? prop.color : "black")};
 `;
 
-const ResetPasswordPresenter = ({ email, emailColor, clickFunc }) => {
-    let emailDescription;
+const ResetPasswordPresenter = ({
+    oldPassword,
+    newPassword,
+    newPasswordConfirmation,
+    clickFunc,
+    oldPasswordColor,
+    newPasswordColor,
+    newPasswordConfirmationColor,
+}) => {
+    let oldPasswordDescription;
+    let newPasswordDescription;
+    let newPasswordConfirmationDescription;
 
-    if (email.value.length > 0) {
-        emailDescription = "이메일을 입력해주세요.";
-        if (emailColor === "blue")
-            emailDescription = "올바른 이메일 형식입니다.";
+    if (oldPassword.value.length > 0) {
+        oldPasswordDescription =
+            "패스워드 형식이 잘못되었습니다. 특수문자 / 문자 / 숫자 포함 형태의 8~15자리 이내의 암호 정규식을 맞춰주세요.";
+        if (oldPasswordColor === "blue")
+            oldPasswordDescription = "올바른 패스워드 형식입니다.";
     } else {
-        emailDescription = "";
+        oldPasswordDescription = "";
+    }
+
+    if (newPassword.value.length > 0) {
+        newPasswordDescription =
+            "패스워드 형식이 잘못되었습니다. 특수문자 / 문자 / 숫자 포함 형태의 8~15자리 이내의 암호 정규식을 맞춰주세요.";
+        if (newPasswordColor === "blue")
+            newPasswordDescription = "올바른 패스워드 형식입니다.";
+    } else {
+        newPasswordDescription = "";
+    }
+
+    if (newPasswordConfirmation.value.length > 0) {
+        newPasswordConfirmationDescription =
+            "패스워드가 일치하지 않습니다. 확인해주세요.";
+        if (newPasswordConfirmationColor === "blue")
+            newPasswordConfirmationDescription = "패스워드가 일치합니다.";
+    } else {
+        newPasswordConfirmationDescription = "";
     }
 
     return (
@@ -55,9 +84,23 @@ const ResetPasswordPresenter = ({ email, emailColor, clickFunc }) => {
                     {"ResetPassword"}
                 </ResetPasswordTitleArea>
                 <MainArea>
-                    <Input placeholder="Email" {...email}></Input>
-                    <Description color={emailColor}>
-                        {emailDescription}
+                    <Input
+                        placeholder="Current Password"
+                        {...oldPassword}
+                    ></Input>
+                    <Description color={oldPasswordColor}>
+                        {oldPasswordDescription}
+                    </Description>
+                    <Input placeholder="New Password" {...newPassword}></Input>
+                    <Description color={newPasswordColor}>
+                        {newPasswordDescription}
+                    </Description>
+                    <Input
+                        placeholder="New Password Confirmation"
+                        {...newPasswordConfirmation}
+                    ></Input>
+                    <Description color={newPasswordConfirmationColor}>
+                        {newPasswordConfirmationDescription}
                     </Description>
                     <Button value="send" onClick={clickFunc}></Button>
                 </MainArea>

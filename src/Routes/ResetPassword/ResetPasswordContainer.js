@@ -3,19 +3,39 @@ import { useInput } from "../../utils";
 import ResetPasswordPresenter from "./ResetPasswordPresenter";
 import { RESET_PASSWORD } from "./ResetPasswordQuerie";
 import { useMutation } from "@apollo/react-hooks";
-import { checkEmailRegularExpression } from "../../utils";
+import { checkPasswordRegularExpression } from "../../utils";
+import { LOCAL_LOG_OUT } from "../../utils";
 import { toast } from "react-toastify";
 
 const ResetPasswordContainer = () => {
-    const email = useInput("");
+    const oldPassword = useInput("");
+    const newPassword = useInput("");
+    const newPasswordConfirmation = useInput("");
     const [submitting, setSubmitting] = useState(false);
     const [resetPasswordMutation] = useMutation(RESET_PASSWORD);
-    let emailColor = "red";
+    const [logOutMutation] = useMutation(LOCAL_LOG_OUT);
 
-    if (email.value.length >= 7) {
-        if (checkEmailRegularExpression(email.value)) {
-            emailColor = "blue";
+    let oldPasswordColor = "red";
+    let newPasswordColor = "red";
+    let newPasswordConfirmationColor = "red";
+
+    if (oldPassword.value.length >= 8) {
+        if (checkPasswordRegularExpression(oldPassword.value)) {
+            oldPasswordColor = "blue";
         }
+    }
+
+    if (newPassword.value.length >= 8) {
+        if (checkPasswordRegularExpression(newPassword.value)) {
+            newPasswordColor = "blue";
+        }
+    }
+
+    if (
+        newPassword.value === newPasswordConfirmation.value &&
+        newPassword.value.length != 0
+    ) {
+        newPasswordConfirmationColor = "blue";
     }
 
     const clickFunc = async (e) => {
@@ -26,15 +46,17 @@ const ResetPasswordContainer = () => {
                 data: { resetPassword: resetPasswordResponse },
             } = await resetPasswordMutation({
                 variables: {
-                    email: email.value,
+                    oldPassword: oldPassword.value,
+                    newPassword: newPassword.value,
+                    newPasswordConfirmation: newPasswordConfirmation.value,
                 },
             });
 
             console.log(resetPasswordResponse);
             if (resetPasswordResponse === true) {
-                toast("Send Email!");
+                toast("Password Change Success!");
                 setTimeout(function () {
-                    window.location.href = "/login";
+                    logOutMutation();
                 }, 4000);
             } else {
                 setSubmitting(false);
@@ -45,8 +67,12 @@ const ResetPasswordContainer = () => {
 
     return (
         <ResetPasswordPresenter
-            email={email}
-            emailColor={emailColor}
+            oldPassword={oldPassword}
+            newPassword={newPassword}
+            newPasswordConfirmation={newPasswordConfirmation}
+            oldPasswordColor={oldPasswordColor}
+            newPasswordColor={newPasswordColor}
+            newPasswordConfirmationColor={newPasswordConfirmationColor}
             clickFunc={clickFunc}
         ></ResetPasswordPresenter>
     );

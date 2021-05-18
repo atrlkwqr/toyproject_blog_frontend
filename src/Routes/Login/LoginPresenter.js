@@ -96,7 +96,7 @@ const LoginPresenter = ({
                         <Link to="/signup">Create Account</Link>
                     </LoginFooterArea>
                     <LoginFooterArea>
-                        <Link to="/reset_password">Forgot Password?</Link>
+                        <Link to="/forget_password">Forgot Password?</Link>
                     </LoginFooterArea>
                 </LoginBox>
             </React.Fragment>
