@@ -8,6 +8,7 @@ import { GET_PROFILE } from "../Routes/Profile/ProfileQuerie";
 import { LOCAL_LOG_OUT } from "../utils";
 import { Mutation } from "@apollo/client/react/components";
 import Button from "../Components/Button";
+import DropdownMenu from "../Components/DropdownMenu";
 
 const HeaderSpace = styled.header`
     width: 100%;
@@ -81,7 +82,8 @@ const Header = () => {
                     {isLoggedIn ? (
                         <ProfileBox>
                             <h1>{userId}</h1>
-                            <Mutation mutation={LOCAL_LOG_OUT}>
+                            <DropdownMenu />
+                            {/* <Mutation mutation={LOCAL_LOG_OUT}>
                                 {(logOutMutation, { loading }) => {
                                     return (
                                         <Button
@@ -95,7 +97,7 @@ const Header = () => {
                                         </Button>
                                     );
                                 }}
-                            </Mutation>
+                            </Mutation> */}
                         </ProfileBox>
                     ) : (
                         <ProfileBox>

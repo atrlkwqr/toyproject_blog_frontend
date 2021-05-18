@@ -52,7 +52,7 @@ const ForgetPasswordPresenter = ({ email, emailColor, clickFunc }) => {
             <ToastContainer />
             <ForgetPasswordBox>
                 <ForgetPasswordTitleArea>
-                    {"ForgetPassword"}
+                    {"Forget Password"}
                 </ForgetPasswordTitleArea>
                 <MainArea>
                     <Input placeholder="Email" {...email}></Input>

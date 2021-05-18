@@ -81,7 +81,7 @@ const ResetPasswordPresenter = ({
             <ToastContainer />
             <ResetPasswordBox>
                 <ResetPasswordTitleArea>
-                    {"ResetPassword"}
+                    {"Reset Password"}
                 </ResetPasswordTitleArea>
                 <MainArea>
                     <Input
