@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 import blogImage from "../images/BlogLogo.png";
 import banner from "../images/Banner.jpg";
@@ -44,6 +43,12 @@ const BannerBox = styled.img`
 
 const ContentMargin = styled.div`
     margin-bottom: 30px;
+`;
+
+const AtagForm = styled.a`
+    color: inherit;
+    text-decoration: none;
+    font-size: 25px;
 `;
 
 const Header = () => {
@@ -93,7 +98,9 @@ const Header = () => {
                             </Mutation>
                         </ProfileBox>
                     ) : (
-                        <Link to="/login">login</Link>
+                        <ProfileBox>
+                            <AtagForm href={"/login"}>login</AtagForm>
+                        </ProfileBox>
                     )}
                 </MenuSpace>
             </HeaderSpace>

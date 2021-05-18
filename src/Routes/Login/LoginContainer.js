@@ -52,8 +52,9 @@ const LoginContainer = () => {
                 let ok = getAccountResponse.ok;
                 let token = getAccountResponse.token;
                 if (ok === true || token !== null) {
-                    toast("Login Success!");
                     await localLogInMutation({ variables: { token } });
+                    setSubmitting(false);
+                    toast("Login Success!");
                     setTimeout(function () {
                         window.location.href = "/";
                     }, 3000);

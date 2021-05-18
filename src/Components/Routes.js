@@ -21,6 +21,7 @@ const LoggedInRoutes = () => (
                 path="/youhaveselectedcategory/:category_id"
                 component={CategoryPost}
             />
+            <Route exact path="/login" component={Login} />
             <Route component={Page404} />
         </Switch>
     </Router>
