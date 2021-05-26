@@ -27,7 +27,7 @@ export const generateSaltedHash = (password) => {
 
 export const LOCAL_LOG_IN = gql`
     mutation logUserIn($token: String!) {
-        logUserIn(token: $token) @client
+        logUserIn(token: $token, id: $id) @client
     }
 `;
 

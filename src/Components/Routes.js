@@ -8,6 +8,7 @@ import PostWrite from "../Routes/PostWrite";
 import Post from "../Routes/Post";
 import CategoryPost from "../Routes/CategoryPost";
 import ResetPassword from "../Routes/ResetPassword";
+import Profile from "../Routes/Profile";
 import Page404 from "../Components/Page404";
 
 const LoggedInRoutes = () => (
@@ -23,6 +24,7 @@ const LoggedInRoutes = () => (
             />
             <Route exact path="/login" component={Login} />
             <Route exact path="/reset_password" component={ResetPassword} />
+            <Route exact path="/profile" component={Profile} />
             <Route component={Page404} />
         </Switch>
     </Router>

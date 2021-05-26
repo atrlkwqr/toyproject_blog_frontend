@@ -13,6 +13,7 @@ const MainArea = styled.div`
 `;
 
 export default ({ title, postHtml }) => {
+    console.log(postHtml);
     return (
         <>
             <ToastContainer />

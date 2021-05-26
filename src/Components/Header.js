@@ -1,14 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import blogImage from "../images/BlogLogo.png";
 import banner from "../images/Banner.jpg";
 import { LOCAL_LOGGED_IN_QUERY } from "../sharedQueries";
 import { useQuery } from "@apollo/client";
 import { GET_PROFILE } from "../Routes/Profile/ProfileQuerie";
-import { LOCAL_LOG_OUT } from "../utils";
-import { Mutation } from "@apollo/client/react/components";
-import Button from "../Components/Button";
 import DropdownMenu from "../Components/DropdownMenu";
+import { fileServerAddr } from "../utils";
+import axios from "axios";
+import { Viewer } from "@toast-ui/react-editor";
+import DOMPurify from "dompurify";
 
 const HeaderSpace = styled.header`
     width: 100%;
@@ -30,6 +31,8 @@ const MenuSpace = styled.div`
 
 const ProfileBox = styled.div`
     margin-right: 30px;
+    display: flex;
+    flex-direction: row;
 `;
 
 const BannerWrapper = styled.div`
@@ -52,6 +55,40 @@ const AtagForm = styled.a`
     font-size: 25px;
 `;
 
+const ProfileImage = styled.div`
+    height: 70px;
+    width: 70px;
+`;
+
+const ProfileIdMenu = styled.div`
+    height: 100px;
+    width: 100px;
+`;
+
+const fileServer = fileServerAddr();
+
+const getProfileFunc = async (profileId) => {
+    const jwt = localStorage.getItem("token");
+    const res = await axios({
+        method: "get",
+        //url: fileServerAddr.concat(postId.toString()),
+        url: fileServer.concat("p/".concat(profileId.toString())),
+        headers: {
+            Authorization: jwt,
+            "Content-Type": "multipart/form-data",
+        },
+        responseType: "blob",
+    });
+
+    // const url = window.URL.createObjectURL(new Blob([res.data]));
+    // console.log(url)
+
+    var blob = new Blob([res.data]);
+    var profileHtml = await new Response(blob).text();
+
+    return profileHtml;
+};
+
 const Header = () => {
     const {
         data: { isLoggedIn },
@@ -60,15 +97,24 @@ const Header = () => {
     const { data: profileData, loading: profileLoading } =
         useQuery(GET_PROFILE);
 
-    let userId = null;
+    const [profileHtml, setProfileHtml] = useState(null);
+    const [loading, setLoading] = useState(true);
 
-    if (isLoggedIn === true) {
-        if (!profileLoading) {
-            const { getUserProfile: getUserProfileResponse } = profileData;
-            //console.log(getUserProfileResponse);
-            if (getUserProfileResponse !== null) {
-                userId = getUserProfileResponse.userId;
-            }
+    let userId = null;
+    let id = localStorage.getItem("id") || null;
+    let profileId = id + "_profileId";
+
+    useEffect(() => {
+        getProfileFunc(profileId).then((result) => {
+            setProfileHtml(result);
+            setLoading(false);
+        });
+    }, [profileHtml]);
+
+    if (!profileLoading) {
+        const { getUserProfile: getUserProfileResponse } = profileData;
+        if (getUserProfileResponse !== null) {
+            userId = getUserProfileResponse.userId;
         }
     }
 
@@ -81,23 +127,25 @@ const Header = () => {
                 <MenuSpace>
                     {isLoggedIn ? (
                         <ProfileBox>
-                            <h1>{userId}</h1>
-                            <DropdownMenu />
-                            {/* <Mutation mutation={LOCAL_LOG_OUT}>
-                                {(logOutMutation, { loading }) => {
-                                    return (
-                                        <Button
-                                            value="logout"
-                                            onClick={() => {
-                                                window.location.href = "/";
-                                                logOutMutation();
+                            <ProfileImage>
+                                {loading ? (
+                                    <></>
+                                ) : (
+                                    <>
+                                        <Viewer
+                                            initialValue={profileHtml}
+                                            customHTMLSanitizer={(html) => {
+                                                return DOMPurify.sanitize(html);
                                             }}
-                                        >
-                                            {"Log out"}
-                                        </Button>
-                                    );
-                                }}
-                            </Mutation> */}
+                                        />
+                                    </>
+                                )}
+                            </ProfileImage>
+
+                            <ProfileIdMenu>
+                                <h1>{userId}</h1>
+                                <DropdownMenu />
+                            </ProfileIdMenu>
                         </ProfileBox>
                     ) : (
                         <ProfileBox>

@@ -51,8 +51,9 @@ const LoginContainer = () => {
                 console.log(getAccountResponse);
                 let ok = getAccountResponse.ok;
                 let token = getAccountResponse.token;
-                if (ok === true || token !== null) {
-                    await localLogInMutation({ variables: { token } });
+                let id = getAccountResponse.id;
+                if (ok === true || token !== null || id !== null) {
+                    await localLogInMutation({ variables: { token, id } });
                     setSubmitting(false);
                     toast("Login Success!");
                     setTimeout(function () {
